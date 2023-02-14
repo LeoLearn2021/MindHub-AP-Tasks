@@ -1,0 +1,83 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+body, html {
+    height: 100%;
+}
+
+/* The hero image */
+.hero-image {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/design1_image1.jpg");
+  
+    /* Set a specific height */
+    height: 500px;
+  
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  /* Place text in the middle of the image */
+.hero-text {
+    font-size: 40px;
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+img {
+    width: 150px;
+    position: relative;
+    top: 440px;
+    left: 80%;
+    z-index: 1;
+}
+
+nav {
+    display: inline-block;
+    width: 20%;
+    position: absolute;
+    top: 560px;
+}
+nav a {
+    display: block; 
+    line-height: 80px;
+    height: 80px;
+    margin-left: 50px;
+    
+}
+.active {
+    text-decoration: none;
+}
+.main-page-title {
+    color: white;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    display: inline;
+    top: 500px;
+    background-color: black;
+    padding-top: 5px ;
+    padding-bottom: 5px;
+}
+article, section {
+    display: block;
+    width: 80%;
+    position: relative;
+    top: 40px;
+    left:20%;
+    padding-top: 30px;
+}
+article p , section p {
+    width: 90%;
+    margin-left: 20px;
+}
+.contact p, .contact a {
+    display: inline;
+}

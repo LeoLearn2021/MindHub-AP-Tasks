@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+header {
+    max-width: 1000px;
+}
+img {
+    max-width: 250px;
+}
+
+header h1 {
+    font-size: 40px;
+}
