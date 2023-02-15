@@ -1,1 +1,1 @@
-# Repositorio de tareas (tasks) del curso MindHUb Argentina Programa.
+# Repositorio de tareas (tasks) del curso MindHub Argentina Programa.
