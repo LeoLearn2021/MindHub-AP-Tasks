@@ -77,7 +77,7 @@ article, section, .contact {
 article:last-child, section:last-child {
     margin-bottom: 30px;
 }
-article p , section p {
+article p , section > p, .doc-title h2, .schedule-table h2 {
     width: 90%;
     margin-left: 20px;
 }
@@ -87,4 +87,80 @@ article p , section p {
 footer p {
     text-align: center;
 }
+.doc-title, .schedule-table h2{    
+    text-align: center;
+    margin-bottom: 30px;
+}
+.schedule-table h2 {
+    font-size:xx-large;
+}
+.schedule-table p {
+    font-style: oblique;
+}
+.schedule-table {
+    margin-bottom: 50px;
+}
+.title-too {
+    display: block;   
+    font-size: 1.5em;    
+    font-weight: bold;
+}
 
+.policy h2 {
+    margin-bottom: 30px;
+}
+.policy > p {
+    text-indent: 40px;
+}
+.policy span {
+    font-weight: bold;
+}
+ol, ul {
+    list-style-position: inside;    
+    padding-inline-start: 5px;    
+}
+li p {
+    display:inline;
+}
+.policy > ol > li, .policy > ul > li {
+    margin-bottom: 20px;
+}
+.policy > ol > li::marker {
+    font-weight: bold;    
+}
+ul {
+    list-style-type: circle;
+    padding-left: 40px;
+}
+table caption {
+    text-align: left;
+    text-decoration: underline;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.month {
+    width: 170px;
+}
+.teams {
+    width: 120px;
+}
+.location {
+    width: 160px;
+}
+.times {
+    width: 120px;
+}
+td {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.date {
+    padding-left: 90px;
+}
+dt {
+    font-weight: bold;
+    display: inline;
+}
+dd {
+    min-width: 70%;
+}
