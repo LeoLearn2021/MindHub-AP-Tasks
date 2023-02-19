@@ -157,10 +157,32 @@ td {
 .date {
     padding-left: 90px;
 }
-dt {
-    font-weight: bold;
-    display: inline;
+.more-info {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    
+  }
+.more-info li {
+    margin-bottom: 15px;
+}  
+.more-info li span{
+    font-weight: bold;    
 }
-dd {
-    min-width: 70%;
+.more-info li:nth-child(3) {
+    margin-top: 20px
+}
+.more-info li:nth-child(4) {
+    flex-basis: 50%;
+    flex-grow: 1;
+}
+.more-info li:last-child {
+    margin-right: 50px;
+}
+footer {
+    color:white;
+    background-color: rgb(158, 155, 155);
+    margin: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
