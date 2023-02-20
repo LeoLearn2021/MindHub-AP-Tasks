@@ -1,0 +1,188 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+body, html {
+    height: 100%;
+}
+
+/* The hero image */
+.hero-image {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/design1_image1.jpg");
+  
+    /* Set a specific height */
+    height: 500px;
+  
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  /* Place text in the middle of the image */
+.hero-text {
+    font-size: 40px;    
+    margin-top: 7%;
+    align-self: flex-start;    
+    color: white;
+}
+img {
+    width: 150px;
+    position: absolute;
+    top: 440px;
+    left: 80%;
+    z-index: 1;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav {
+    display: inline-block;
+    width: 20%;
+    order: 2;
+}
+nav a {
+    display: block; 
+    line-height: 80px;
+    height: 80px;
+    margin-left: 50px;
+}
+.active {
+    text-decoration: none;
+}
+.main-page-title {
+    color: white;
+    text-align: center;
+    align-self: flex-start;
+    width: 100%;
+    background-color: black;
+    padding-top: 5px ;
+    padding-bottom: 5px;
+    order: 1;
+}
+.main-section {    
+    order: 3;
+    width: 80%;
+}
+article, section, .contact {
+    padding-top: 30px;    
+}
+article:last-child, section:last-child {
+    margin-bottom: 30px;
+}
+article p , section > p, .doc-title h2, .schedule-table h2 {
+    width: 90%;
+    margin-left: 20px;
+}
+.contact p, .contact a {
+    display: inline;    
+}
+footer p {
+    text-align: center;
+}
+.doc-title, .schedule-table h2{    
+    text-align: center;
+    margin-bottom: 30px;
+}
+.schedule-table h2 {
+    font-size:xx-large;
+}
+.schedule-table p {
+    font-style: oblique;
+}
+.schedule-table {
+    margin-bottom: 50px;
+}
+.title-too {
+    display: block;   
+    font-size: 1.5em;    
+    font-weight: bold;
+}
+
+.policy h2 {
+    margin-bottom: 30px;
+}
+.policy > p {
+    text-indent: 40px;
+}
+.policy span {
+    font-weight: bold;
+}
+ol, ul {
+    list-style-position: inside;    
+    padding-inline-start: 5px;    
+}
+li p {
+    display:inline;
+}
+.policy > ol > li, .policy > ul > li {
+    margin-bottom: 20px;
+}
+.policy > ol > li::marker {
+    font-weight: bold;    
+}
+ul {
+    list-style-type: circle;
+    padding-left: 40px;
+}
+table caption {
+    text-align: left;
+    text-decoration: underline;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.month {
+    width: 170px;
+}
+.teams {
+    width: 120px;
+}
+.location {
+    width: 160px;
+}
+.times {
+    width: 120px;
+}
+td {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.date {
+    padding-left: 90px;
+}
+.more-info {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    
+  }
+.more-info li {
+    margin-bottom: 15px;
+}  
+.more-info li span{
+    font-weight: bold;    
+}
+.more-info li:nth-child(3) {
+    margin-top: 20px
+}
+.more-info li:nth-child(4) {
+    flex-basis: 50%;
+    flex-grow: 1;
+}
+.more-info li:last-child {
+    margin-right: 50px;
+}
+footer {
+    color:white;
+    background-color: rgb(158, 155, 155);
+    margin: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
