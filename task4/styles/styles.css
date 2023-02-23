@@ -62,11 +62,12 @@ nav a {
     color: white;
     text-align: center;
     align-self: flex-start;
-    width: 100%;
+    min-width: 100%;
     background-color: black;
     padding-top: 5px ;
     padding-bottom: 5px;
     order: 1;
+    margin-left: 0 !important;
 }
 .main-section {    
     order: 3;
