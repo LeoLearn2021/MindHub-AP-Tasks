@@ -31,25 +31,26 @@
             <h2>Registration Form</h2>
             <form action="./show_data.html" method="get">
                 <fieldset>
-                    <label for="firstName">Player's First Name: </label>
+                    <label for="name">Player's First Name: </label>
                     <input type="text" name="firstName" id="name" placeholder="Name Here">
                     <label for="lastName">Last Name: </label>
-                    <input type="text" name="lastName" id="surname"placeholder="Lastname Here"> 
-                    <label for="street">Street Address:</label>
+                    <input type="text" name="lastName" id="lastName" placeholder="Lastname Here"> 
+                    <label for="streetAddress">Street Address:</label>
                     <input type="text" name="street" id="streetAddress">
-                    <label for="city">City: </label>
+                    <label for="cityName">City: </label>
                     <input type="text" name="city" id="cityName">
                     <label for="zipCode">Zip Code: </label>
                     <input type="text" name="zipCode" id="zipCode">
-                    <label for="birth">Birth Date: </label>
+                    <label for="birthDate">Birth Date: </label>
                     <input type="date" name="birth" id="birthDate">
-                    <label for="gender">Gender: 
-                    Female <input type="radio" name="gender" id="female" value="female">
-                    Male <input type="radio" name="gender" id="male" value="male">
-                    </label>
-                    <label for="grade">Grade: </label>
+                    <label for="female">Gender: Female </label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="male" value="male">
+                    
+                    <label for="currGrade">Grade: </label>
                     <select name="grade" id="currGrade">
-                        <option defaultValue>Choose below...</option>
+                        <option disabled selected>Choose below...</option>
                         <option value="preSchool">Pre-School</option>
                         <option value="first">1st</option>
                         <option value="second">2nd</option>
@@ -88,7 +89,7 @@
                     <legend>Uniform Size:</legend>
                     <label for="size">Your Size: </label>
                     <select name="size" id="size">
-                        <option defaultValue>Choose best fit...</option>
+                        <option disabled selected>Choose best fit...</option>
                         <option value="youthSmall">Youth Small</option>
                         <option value="youthMedium">Youth Medium</option>
                         <option value="youthLarge">Youth Large</option>
@@ -104,7 +105,7 @@
                     <label for="signature">Parent/Guardian Signature:</label>
                     <input type="text" name="signature" id="signature">
                     <label for="date">Date</label>
-                    <input type="date" name="date" id="date" value="today">
+                    <input type="date" name="date" id="date">
                 </fieldset>
 
                 <button type="submit">Register...</button>
