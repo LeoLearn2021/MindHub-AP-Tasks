@@ -38,6 +38,16 @@ img {
     left: 80%;
     z-index: 1;
 }
+@media only screen and (max-width:760px){
+    img {
+        width: 100px;
+        position: absolute;
+        top: 380px;
+        left: 50%;
+        z-index: 1;
+    }
+}
+
 main {
     display: flex;
     flex-wrap: wrap;
@@ -52,7 +62,7 @@ nav a {
     display: block; 
     line-height: 80px;
     height: 80px;
-    margin-left: 50px;
+    /* margin-left: 20px; */
 }
 .active {
     text-decoration: none;
