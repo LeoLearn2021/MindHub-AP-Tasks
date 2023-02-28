@@ -1,3 +1,6 @@
 /email-and-file-tasks
 *.zip
 /task2-flexbox-version
+/amazing-events/node_modules
+/amazing-events/dist
+/amazing-events/.parcel-cache
