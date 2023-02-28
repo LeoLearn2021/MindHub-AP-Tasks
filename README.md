@@ -1,3 +1,5 @@
-### Repositorio de tareas (tasks) del curso MindHub Argentina Programa.
+# Repositorio de tareas (tasks) del curso MindHub Argentina Programa.
 
-## Para "Amazing events" correr npm install.
+# Instrucciones de uso:
+
+### Para "Amazing events" correr npm install.
