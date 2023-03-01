@@ -14,35 +14,35 @@
 </head>
 
 <body>
-    <div class="container ">
-        <header>
+   
+        <header class="">
             <!-- Nav Bar-->
             <nav class="navbar navbar-expand-lg navbar-dark mt-3">
-                <div class="container-fluid">
+                <div class="container">
                     <a class="navbar-brand" href="#">
                         <img src="../assets/logo-Amazing-Events.png" alt="Amazing Events Logo">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active px-4" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Upcoming Events</a>
+                                <a class="nav-link px-4" href="#">Upcoming Events</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Past Events</a>
+                                <a class="nav-link px-4" href="#">Past Events</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link px-4" href="#">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Stats</a>
+                                <a class="nav-link px-4" href="#">Stats</a>
                             </li>
                         </ul>
                     </div>
@@ -82,51 +82,51 @@
             <!-- Car Nav Show -->
         </header>
 
-        <main>
+        <main class="container">
             <!--Selection Ribbon -->
-            <div class="container-fluid my-5 select-ribbon">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <div class="cat-check">
-                            <div class="form-check mx-2">
-                                <input class="form-check-input  border border-primary cat-check" type="checkbox"
-                                    value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Category
-                                </label>
-                            </div>
-                            <div class="form-check mx-2">
-                                <input class="form-check-input  border border-primary cat-check" type="checkbox"
-                                    value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Category
-                                </label>
-                            </div>
-                            <div class="form-check mx-2">
-                                <input class="form-check-input  border border-primary cat-check" type="checkbox"
-                                    value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Category
-                                </label>
-                            </div>
-                            <div class="form-check mx-2">
-                                <input class="form-check-input  border border-primary cat-check" type="checkbox"
-                                    value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Category
-                                </label>
-                            </div>
-                            <div class="form-check mx-2">
-                                <input class="form-check-input  border border-primary cat-check" type="checkbox"
-                                    value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Category
-                                </label>
-                            </div>
+            <div class="container-fluid my-5 select-ribbon text-center">
+                <div class="row">
+                    <!--Cat checks-->
+                    <div class="col cat-check">
+                        <div class="form-check mx-2 p-2 col-sm-2">
+                            <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                                id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Category
+                            </label>
+                        </div>
+                        <div class="form-check mx-2 p-2 col-sm-2">
+                            <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                                id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Category
+                            </label>
+                        </div>
+                        <div class="form-check mx-2 p-2 col-sm-2">
+                            <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                                id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Category
+                            </label>
+                        </div>
+                        <div class="form-check mx-2 p-2 col-sm-2">
+                            <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                                id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Category
+                            </label>
+                        </div>
+                        <div class="form-check mx-2 p-2 col-sm-2">
+                            <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                                id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Category
+                            </label>
                         </div>
                     </div>
+                    <!--Cat checks-->
                     <!-- Search Box -->
-                    <div class="col">
+                    <div class="row col-sm-6">
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" aria-label="Search" />
                             <button class="btn btn-outline-primary" type="submit">
@@ -146,8 +146,7 @@
             <!--Card Show -->
             <div class="container-fluid">
                 <div class="d-flex justify-content-around flex-wrap">
-                <!--Card -->
-                <div class="d-flex my-5 py-5">
+                    <!--Card -->
                     <div class="s-card">
                         <div class="card m-2 text-bg-dark text-center rgb">
                             <img src="../assets/img-sources/Cinema.jpg" class="card-image" alt="Cinema picture" />
@@ -166,13 +165,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Card -->
-                <!--Card -->
-                <div class="d-flex my-5 py-5">
+                    <!--Card -->
+                    <!--Card -->
                     <div class="s-card">
                         <div class="card m-2 text-bg-dark text-center rgb">
-                            <img src="../assets/img-sources/Costume_Party.jpg" class="card-image" alt="Cinema picture" />
+                            <img src="../assets/img-sources/Costume_Party.jpg" class="card-image"
+                                alt="Cinema picture" />
                             <div class="card-body">
                                 <h5 class="card-title">Costume Party</h5>
                                 <p class="card-text">
@@ -188,10 +186,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Card -->
-                <!--Card -->
-                <div class="d-flex my-5 py-5">
+                    <!--Card -->
+                    <!--Card -->
                     <div class="s-card">
                         <div class="card m-2 text-bg-dark text-center rgb">
                             <img src="../assets/img-sources/Food_Fair.jpg" class="card-image" alt="Cinema picture" />
@@ -210,10 +206,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Card -->
-                <!--Card -->
-                <div class="d-flex my-5 py-5">
+                    <!--Card -->
+                    <!--Card -->
                     <div class="s-card">
                         <div class="card m-2 text-bg-dark text-center rgb">
                             <img src="../assets/img-sources/Marathon.jpg" class="card-image" alt="Cinema picture" />
@@ -232,10 +226,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Card -->
-                <!--Card -->
-                <div class="d-flex my-5 py-5">
+                    <!--Card -->
+                    <!--Card -->
                     <div class="s-card">
                         <div class="card m-2 text-bg-dark text-center rgb">
                             <img src="../assets/img-sources/Museum_Tour.jpg" class="card-image" alt="Cinema picture" />
@@ -254,13 +246,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Card -->
-                <!--Card -->
-                <div class="d-flex my-5 py-5">
+                    <!--Card -->
+                    <!--Card -->
                     <div class="s-card">
                         <div class="card m-2 text-bg-dark text-center rgb">
-                            <img src="../assets/img-sources/Music_Concert.jpg" class="card-image" alt="Cinema picture" />
+                            <img src="../assets/img-sources/Music_Concert.jpg" class="card-image"
+                                alt="Cinema picture" />
                             <div class="card-body">
                                 <h5 class="card-title">Music Concert</h5>
                                 <p class="card-text">
@@ -276,10 +267,9 @@
                             </div>
                         </div>
                     </div>
+                    <!--Card -->
                 </div>
-                <!--Card -->
             </div>
-        </div>
             <!--Card Show -->
         </main>
         <footer class="d-flex justify-content-around">
@@ -299,7 +289,7 @@
             </div>
         </footer>
 
-    </div>
+    
 
     <script type="module" src="js/main.js"></script>
 </body>

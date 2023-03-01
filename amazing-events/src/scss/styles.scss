@@ -7,20 +7,14 @@ $bs-font-sans-serif: 'Poppins', sans-serif !important;
 // Import all of Bootstrap's CSS
 @import "~bootstrap/scss/bootstrap";
 
-.navbar-collapse {
-    justify-content: flex-end;
-}
 .navbar-brand img {
-    max-width: 35% !important;
+    width: 15rem;
 }
 .carousel {
     border-top: #ff9a00 3px solid;
 }
 @media (min-width: 992px){
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 1.5rem;
-        padding-left: 1.5rem;
-    }
+
     .carousel {   
         background-image: radial-gradient(rgba(0, 0, 0, 0.1), rgba(27, 27, 27, 1)), url("../../assets/img-sources/event.jpg");
         height: 370px;
@@ -47,19 +41,21 @@ $bs-font-sans-serif: 'Poppins', sans-serif !important;
       
 }
 .carouselNow {
-    text-align: center;    
-}
-.carouselNow {
-    text-decoration: none;
+    text-align: center;  
+    text-decoration: none;  
 }
 .cat-check {
     display: inline-flex;
 }
-.s-card {
-    transition: .5s;
+.card img, .card-body {
+    object-fit: cover;
+    aspect-ratio: 1/.7;
 }
 .card {
     width: 18rem;       
+}
+.s-card {
+    transition: .5s;    
 }
 .s-card:hover {
     transform: scale(1.1);
