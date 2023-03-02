@@ -54,6 +54,9 @@ $bs-font-sans-serif: 'Poppins', sans-serif !important;
 .card {
     width: 18rem;       
 }
+.d-card .card {
+    width: 30rem;
+}
 .s-card {
     transition: .5s;    
 }
