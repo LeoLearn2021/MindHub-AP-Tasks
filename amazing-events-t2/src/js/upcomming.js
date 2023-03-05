@@ -1,7 +1,7 @@
 
-import {eventsData, renderShowCase,selectEvents, cardShow} from './main'
+import {renderShowCase,selectEvents, cardShow} from './main'
 
-let { currentDate, events } = data;
+let { events } = data;
 
 let upcommingEvents = selectEvents(events, {upcomming:true}); 
 renderShowCase(upcommingEvents, cardShow); // Muestra Upcomming events
