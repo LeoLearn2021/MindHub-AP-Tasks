@@ -5,72 +5,104 @@ import * as bootstrap from 'bootstrap'
 // console.log(data_local);
 let { currentDate, events } = data;
 
-// get categories, upcomming and past events.
-let categories = [];
-let upcommingEvents = [];
-let pastEvents = [];
-
-for (let event of events) {
-  if (!categories.includes(event.category)) {
-    categories.push(event.category);
-  }
-  if (Date.parse(event.date) > Date.parse(currentDate)) {
-    upcommingEvents.push(event);
-  } else {
-    pastEvents.push(event);
-  }
-}
-
-console.log(categories);
-// console.log(upcomingEvents.length, pastEvents.length);
-
-// función para seleccionar eventos (categoría, fechas, upcomming, past, etc).
-// TO DO
-const selectEvents = (events, searchParam=[]) => {
-  //Función de discriminación de eventos por categoría.
-  if (searchParam.length == 0) {
-    return events;
-  }
-  let result = [];
+// Get categories functionality
+const getCategories = (events) => {
+  let categories = [];
   for (let event of events) {
-    for (let cat of searchParam) {
-      if (categories.includes(cat) && event.category === cat) {
-        result.push(event);
-      }
-    }    
+    if (!categories.includes(event.category)) {
+      categories.push(event.category);
+    }
   }
-  return result;
+  return categories;
 }
+const CATEGORIES = getCategories(events);
+console.log(CATEGORIES);
+
+// Function that returns events divided in upcomming and past events according to current date.
+const getUpcommingPastEvents = (events, currentDate) => {
+  let eventsDivided = {
+    upcommingEvents : [],
+    pastEvents : [],
+  }
+  for (let event of events) {
+    if (Date.parse(event.date) > Date.parse(currentDate)) {
+      eventsDivided.upcommingEvents.push(event);
+    } else {
+      eventsDivided.pastEvents.push(event);
+    }
+  }
+  return eventsDivided;
+}
+
+// let {upcommingEvents, pastEvents} = getUpcommingPastEvents(events, currentDate);
+// console.log(upcommingEvents.length, pastEvents.length);
+
+// Función para seleccionar eventos (categoría, fechas, upcomming, past, etc).
+// Función retorna eventos ordenados por fecha.
+// Eventualmente puede aceptar distintas currentDate para seleccionar diferente corte.
+// Destructured parameter with default value assignment -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
+export const selectEvents = (events, {upcomming=false, past=false, catEvents=[]}={}, currentD=currentDate) => {
+  //Función de discriminación de eventos por categoría.
+  let result = [];
+  console.log(catEvents.length);
+  if (catEvents.length === 0) {
+    result = events;
+  }
+  else {
+    for (let event of events) {
+      for (let cat of catEvents) {
+        if (CATEGORIES.includes(cat) && event.category === cat) {
+          result.push(event);
+        }
+      }    
+    }
+  }
+  if (upcomming) {
+    result = getUpcommingPastEvents(result, currentD).upcommingEvents;
+  }
+  if (past) {
+    result = getUpcommingPastEvents(result, currentD).pastEvents;
+  }
+  
+  return orderEvents(result);
+}
+
+// Ordenar eventos por fecha
+const orderEvents = (events) => events.sort((a, b) => Date.parse(a.date)-Date.parse(b.date))
 
 // Rendering events Showcase con resultado de búsquedas:
 // create card Showcase
-const cardShow = document.getElementById("cardsShow");
+export const cardShow = document.getElementById("cardsShow");
 
-function renderShowCase(searchEvents, showDisplay) {
+export function renderShowCase(searchEvents, showDisplay) {
+  console.log(currentDate);
   for (let event of searchEvents) {
     const card = createCard(event);
     showDisplay.appendChild(card);
+    console.log(event.date, event.category);
   }
 }
 
 
 // Ejemplos de uso de las funciones //
 
-// let catEvents = selectEvents(events, [categories[0], categories[1], categories[6]]);
-// renderShowCase(events, cardShow); // Muestra todos los eventos
+// renderShowCase(selectEvents(events), cardShow); // Muestra todos los eventos
 // console.log(events.length);
-// renderShowCase(upcommingEvents, cardShow); // Muestra Upcomming events
-// console.log(upcommingEvents.length);
-// renderShowCase(pastEvents, cardShow); // Muestra Past events
-// console.log(pastEvents.length);
-// renderShowCase(catEvents, cardShow); // Muestra eventos de la categoria elegida.
-// console.log(catEvents.length);
+// renderShowCase(selectEvents(events, {upcomming:true}), cardShow); // Muestra Upcomming events
+// console.log(selectEvents(events, {upcomming:true}).length);
+// renderShowCase(selectEvents(events, {past:true}), cardShow); // Muestra Past events
+// console.log(selectEvents(events, {past:true}).length);
+// let selectCatEvents = selectEvents(events, {catEvents:[CATEGORIES[1], CATEGORIES[3], CATEGORIES[4]]});
+// renderShowCase(selectCatEvents, cardShow); // Muestra eventos de la categoria elegida.
+// console.log(selectCatEvents.length);
 
 
 function createCard(event) {
   // card
+  let s_card = document.createElement('div');
+  s_card.classList.add('s-card');
   let card = document.createElement("div");
-  card.classList.add("card", "m-3", "text-center");
+  card.classList.add("card", "m-4", "text-bg-dark", "text-center", "rgb"); 
   // card image
   let img = document.createElement("img");
   img.src = event.image;
@@ -97,7 +129,7 @@ function createCard(event) {
   const more = document.createElement("a");
   more.classList.add("btn", "btn-primary", "card-btn", "shadow");
   more.innerText = "Tell me more";
-  more.href = "#";
+  more.href = "../details.html";
   cardFooterContent.appendChild(eventPrice);
   cardFooterContent.appendChild(more);
   cardFooter.appendChild(cardFooterContent);
@@ -105,9 +137,10 @@ function createCard(event) {
   card.appendChild(img);
   card.appendChild(cardBody);
   card.appendChild(cardFooter);
-
-  return card;
+  s_card.appendChild(card);
+  return s_card;
 }
+
 
 
 
