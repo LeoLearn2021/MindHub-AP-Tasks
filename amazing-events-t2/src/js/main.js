@@ -5,6 +5,7 @@ import * as bootstrap from 'bootstrap'
 // console.log(data_local);
 let { currentDate, events } = data;
 
+
 // Get categories functionality
 const getCategories = (events) => {
   let categories = [];
@@ -96,7 +97,7 @@ export function renderShowCase(searchEvents, showDisplay) {
 // renderShowCase(selectCatEvents, cardShow); // Muestra eventos de la categoria elegida.
 // console.log(selectCatEvents.length);
 
-
+// export let idEvent = {};
 function createCard(event) {
   // card
   let s_card = document.createElement('div');
@@ -129,6 +130,9 @@ function createCard(event) {
   const more = document.createElement("a");
   more.classList.add("btn", "btn-primary", "card-btn", "shadow");
   more.innerText = "Tell me more";
+  // const ID_EVENT = event._id;
+  // more.addEventListener("click",() => {idEvent={ID_EVENT:ID_EVENT};
+  // alert(idEvent.ID_EVENT);});
   more.href = "../details.html";
   cardFooterContent.appendChild(eventPrice);
   cardFooterContent.appendChild(more);
@@ -140,6 +144,10 @@ function createCard(event) {
   s_card.appendChild(card);
   return s_card;
 }
+
+// Function to get an event given an id
+export const getEventById = (id, events) => events.filter(event => event._id === id);
+
 
 
 
