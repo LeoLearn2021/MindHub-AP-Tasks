@@ -133,7 +133,7 @@ function createCard(event) {
   // const ID_EVENT = event._id;
   // more.addEventListener("click",() => {idEvent={ID_EVENT:ID_EVENT};
   // alert(idEvent.ID_EVENT);});
-  more.href = "../details.html";
+  more.href ="./details.htm";
   cardFooterContent.appendChild(eventPrice);
   cardFooterContent.appendChild(more);
   cardFooter.appendChild(cardFooterContent);
