@@ -12,3 +12,6 @@
 /amazing-events-dev/dist
 /amazing-events-dev/.parcel-cache
 /testing
+/amazing-events-lab/node_modules
+/amazing-events-lab/dist
+/amazing-events-lab/.parcel-cache
