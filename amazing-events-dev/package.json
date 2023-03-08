@@ -107,7 +107,7 @@
     "yaml": "^1.10.2"
   },
   "scripts": {
-    "start": "parcel serve src/*.html --public-url / --dist-dir dist",
+    "start": "parcel serve src/*.html --log-level verbose --public-url / --dist-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Leonardo Maldonado",
