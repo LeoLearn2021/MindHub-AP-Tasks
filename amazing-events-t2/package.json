@@ -107,7 +107,8 @@
     "yaml": "^1.10.2"
   },
   "scripts": {
-    "start": "parcel serve src/index.html --public-url / --dist-dir dist",
+    "dev": "parcel watch src/*.html",
+    "start": "parcel serve src/*.html --public-url / --dist-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Leonardo Maldonado",
