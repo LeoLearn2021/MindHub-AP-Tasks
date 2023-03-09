@@ -68,7 +68,22 @@ export const selectEvents = (events, {upcomming=false, past=false, catEvents=[]}
 }
 
 // Ordenar eventos por fecha
-const orderEvents = (events) => events.sort((a, b) => Date.parse(a.date)-Date.parse(b.date))
+const orderEvents = (events) => events.sort((a, b) => Date.parse(a.date)-Date.parse(b.date));
+
+// Función agrega datos para trasnsferir a pagina detalles mediante contexto
+export const getDetailsButtonsListen = (selector) => {
+  const detailsButtons = Array.from(document.querySelectorAll(selector));
+  detailsButtons.forEach(button => {
+    button.addEventListener("click", e => { 
+        // e.preventDefault();         
+        sessionStorage.setItem("id", e.target.id);
+        sessionStorage.setItem("previousPage", window.location.href);        
+    });
+  });
+  return detailsButtons.length > 0;
+}
+
+
 
 // Rendering events Showcase con resultado de búsquedas:
 // create card Showcase
@@ -130,6 +145,7 @@ function createCard(event) {
   more.classList.add("btn", "btn-primary", "card-btn", "shadow");
   more.innerText = "Tell me more";
   more.href = "./details.html";
+  more.setAttribute("id", event._id);  
   cardFooterContent.appendChild(eventPrice);
   cardFooterContent.appendChild(more);
   cardFooter.appendChild(cardFooterContent);
