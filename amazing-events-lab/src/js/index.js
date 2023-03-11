@@ -1,7 +1,9 @@
 
-import {renderShowCase, selectEvents, cardShow, getDetailsButtonsListen} from './main'
+import {renderShowCase, selectEvents, cardShow, getDetailsButtonsListen, renderSelectCategory, CATEGORIES} from './main'
 
 let { events } = data;
+
+renderSelectCategory("catForm");
 
 let allEvents = selectEvents(events); 
 

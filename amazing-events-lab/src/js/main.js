@@ -16,8 +16,8 @@ const getCategories = (events) => {
   }
   return categories;
 }
-const CATEGORIES = getCategories(events);
-console.log(CATEGORIES);
+export const CATEGORIES = getCategories(events);
+// console.log(CATEGORIES);
 
 // Function that returns events divided in upcomming and past events according to current date.
 const getUpcommingPastEvents = (events, currentDate) => {
@@ -196,3 +196,22 @@ export const renderDetails = (event, previousPage="./index.home") => {
   }
   return render;
 } 
+
+// Select category display rendering
+export const renderSelectCategory = (selector, categories=CATEGORIES) => {
+  const displayContainer = document.getElementById(selector);
+  console.log(displayContainer);
+  let catForm = `<div class="row">`;
+  categories.forEach(category => {
+    catForm +=`    
+        <div class="col form-check mx-2 p-2">
+            <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                id=${category} />
+            <label class="form-check-label" for=${category}>
+                ${category}
+            </label>
+        </div>` 
+  });
+  catForm += "</div>";
+  displayContainer.innerHTML = catForm;
+}

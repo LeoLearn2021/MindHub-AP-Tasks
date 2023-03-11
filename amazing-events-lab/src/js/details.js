@@ -1,9 +1,11 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-import { renderDetails } from './main'
+import { renderDetails, renderSelectCategory } from './main'
 
 let  { events } = data;
+
+renderSelectCategory("catForm");
 
 let eventIdDetails = sessionStorage.getItem("id");
 let previousPage = sessionStorage.getItem("previousPage");

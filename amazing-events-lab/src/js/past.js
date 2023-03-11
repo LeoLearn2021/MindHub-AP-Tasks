@@ -1,7 +1,9 @@
 
-import {renderShowCase,selectEvents, cardShow, getDetailsButtonsListen} from './main'
+import {renderShowCase,selectEvents, cardShow, getDetailsButtonsListen, renderSelectCategory} from './main'
 
 let { events } = data;
+
+renderSelectCategory("catForm");
 
 let pastEvents = selectEvents(events, {past:true}); 
 renderShowCase(pastEvents, cardShow); // Showing Past events
