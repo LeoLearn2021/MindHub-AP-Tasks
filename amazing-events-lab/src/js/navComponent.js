@@ -66,7 +66,8 @@ export const renderNavigation = () => {
         carouselStatic: false,
     }];
 
-    const actual = window.location.href;
+    let actual = window.location.href.split("1234");
+    actual = (actual[actual.length -1] === "/") ? "/index.html" : actual;   
     navLinks.forEach(link => { link.state = actual.includes(link.url.slice(1)) });
 
     // console.log(navLinks);
