@@ -1,9 +1,13 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-import { renderDetails, renderSelectCategory } from './main'
+import { renderDetails, renderSelectCategory } from './main';
+
+import { renderNavigation } from './navComponent';
 
 let  { events } = data;
+
+renderNavigation();
 
 renderSelectCategory("catForm");
 
