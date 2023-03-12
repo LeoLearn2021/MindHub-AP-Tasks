@@ -1,7 +1,10 @@
 
 import {renderShowCase,selectEvents, cardShow, getDetailsButtonsListen, renderSelectCategory} from './main'
+import { renderNavigation } from './navComponent';
 
 let { events } = data;
+
+renderNavigation();
 
 renderSelectCategory("catForm");
 
