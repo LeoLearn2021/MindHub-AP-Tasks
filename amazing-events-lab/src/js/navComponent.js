@@ -15,7 +15,7 @@ export const renderNavigation = () => {
     }, {
         name: "Upcomming Events",
         alt: "Upcomming Events",
-        url: "./upcomming.html",
+        url: "./upcoming.html",
         state: false,
         show: true,
         carouselStatic: true,
