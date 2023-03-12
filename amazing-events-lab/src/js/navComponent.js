@@ -10,16 +10,16 @@ export const renderNavigation = () => {
         state: true,
         show: true,
         carouselStatic: false,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact"],
         carouselStatic: false,
     }, {
-        name: "Upcomming Events",
-        alt: "Upcomming Events",
+        name: "Upcoming Events",
+        alt: "Upcoming Events",
         url: "./upcoming.html",
         state: false,
         show: true,
         carouselStatic: true,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact"],
         carouselStatic: true,
     }, {
         name: "Past Events",
@@ -28,7 +28,7 @@ export const renderNavigation = () => {
         state: false,
         show: true,
         carouselStatic: true,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact"],
         carouselStatic: true,
     }, {
         name: "Contact",
@@ -37,7 +37,7 @@ export const renderNavigation = () => {
         state: false,
         show: true,
         carouselStatic: true,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact"],
         carouselStatic: true,
     }, {
         name: "Stats",
@@ -46,7 +46,7 @@ export const renderNavigation = () => {
         state: false,
         show: true,
         carouselStatic: true,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact", "Stats"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact", "Stats"],
         carouselStatic: true,
     }, {
         name: "Details",
@@ -54,7 +54,7 @@ export const renderNavigation = () => {
         url: "./details.html",
         state: false,
         show: false,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact", "Details"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact", "Details"],
         carouselStatic: true,
     }, {
         name: "Component",
@@ -62,7 +62,7 @@ export const renderNavigation = () => {
         url: "./newComponent.html",
         state: false,
         show: false,
-        onCarousel: ["Home", "Upcomming Events", "Past Events", "Contact", "Component"],
+        onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact", "Component"],
         carouselStatic: false,
     }];
 
