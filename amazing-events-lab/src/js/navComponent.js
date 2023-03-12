@@ -114,7 +114,7 @@ export const renderNavigation = () => {
         carousel.setAttribute("data-bs-ride", carouselMode.pause);
         carousel.setAttribute("data-bs-pause", dataCarouselPause);
     }
-    console.log(carousel);
+    // console.log(carousel);
 
     navLinks.forEach(link => {
         if (carouselActual.onCarousel.includes(link.name)) {
@@ -142,5 +142,5 @@ export const renderNavigation = () => {
     carousel.innerHTML = carouselInner;
 }
 
-renderNavigation();
+// renderNavigation();
 

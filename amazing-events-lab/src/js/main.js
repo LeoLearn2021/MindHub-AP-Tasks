@@ -200,7 +200,7 @@ export const renderDetails = (event, previousPage="./index.home") => {
 // Select category display rendering
 export const renderSelectCategory = (selector, categories=CATEGORIES) => {
   const displayContainer = document.getElementById(selector);
-  console.log(displayContainer);
+  // console.log(displayContainer);
   let catForm = `<div class="row">`;
   categories.forEach(category => {
     catForm +=`    
