@@ -2,12 +2,14 @@
 import * as bootstrap from 'bootstrap'
 
 import { renderDetails, renderSelectCategory } from './main';
-
 import { renderNavigation } from './components/nav-component';
+import { renderSearchRibbon } from './components/ribbon-component';
 
 let  { events } = data;
 
 renderNavigation("nav");
+
+renderSearchRibbon("searchRibbon");
 
 renderSelectCategory("catForm");
 
