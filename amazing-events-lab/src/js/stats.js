@@ -1,6 +1,6 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-import { renderNavigation } from './navComponent';
+import { renderNavigation } from './components/nav-component';
 
-renderNavigation();
+renderNavigation(nav);

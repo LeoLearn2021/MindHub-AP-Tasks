@@ -1,8 +1,7 @@
-// Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
-import logoAmazingEvents from "url:../../assets/logo-Amazing-Events.png";
 
-export const renderNavigation = () => {
+import logoAmazingEvents from "url:../../../assets/logo-Amazing-Events.png";
+
+export const renderNavigation = (selector) => {
     const navLinks = [{
         name: "Home",
         alt: "Amazing Events",
@@ -59,7 +58,7 @@ export const renderNavigation = () => {
     }, {
         name: "Component",
         alt: "New Componet",
-        url: "./newComponent.html",
+        url: "./new-comps.html",
         state: false,
         show: false,
         onCarousel: ["Home", "Upcoming Events", "Past Events", "Contact", "Component"],
@@ -99,7 +98,7 @@ export const renderNavigation = () => {
         }
     });
     navBar += "</ul></div></div>";
-    document.getElementById("nav").innerHTML = navBar;
+    document.getElementById(selector).innerHTML = navBar;
 
     let carouselMode = { on: "carousel", pause: false };
     let dataCarouselPause = "true";

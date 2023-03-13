@@ -1,9 +1,9 @@
 
 import {renderShowCase, selectEvents, cardShow, getDetailsButtonsListen, renderSelectCategory, CATEGORIES} from './main'
-import { renderNavigation } from './navComponent';
+import { renderNavigation } from './components/nav-component';
 let { events } = data;
 
-renderNavigation();
+renderNavigation("nav");
 
 renderSelectCategory("catForm");
 
