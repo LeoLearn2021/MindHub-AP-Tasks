@@ -1,6 +1,5 @@
 
-
-export const renderSearchRibbon = (selector) => {
+export const renderSearchRibbon = (selector, categories) => {
     
     const sRibbon = document.getElementById(selector);
     ribbonContent =`
@@ -26,7 +25,28 @@ export const renderSearchRibbon = (selector) => {
             </div>
             <!-- Search Box -->
         </div>`;
-    sRibbon.innerHTML = ribbonContent;    
+    sRibbon.innerHTML = ribbonContent;  
+    
+    renderSelectCategory("catForm", categories);
 } 
+
+// Select category display rendering
+const renderSelectCategory = (selector, categories) => {
+    const displayContainer = document.getElementById(selector);
+    // console.log(displayContainer);
+    let catForm = `<div class="row">`;
+    categories.forEach(category => {
+      catForm +=`    
+          <div class="col form-check mx-2 p-2">
+              <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
+                  id=${category} />
+              <label class="form-check-label" for=${category}>
+                  ${category}
+              </label>
+          </div>` 
+    });
+    catForm += "</div>";
+    displayContainer.innerHTML = catForm;
+  }
 
 

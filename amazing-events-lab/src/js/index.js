@@ -1,5 +1,5 @@
 
-import {renderShowCase, selectEvents, getDetailsButtonsListen, renderSelectCategory, CATEGORIES} from './main'
+import {renderShowCase, selectEvents, getDetailsButtonsListen, CATEGORIES} from './main'
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 
@@ -8,9 +8,7 @@ let allEvents = selectEvents(events);
 
 renderNavigation("nav");
 
-renderSearchRibbon("searchRibbon");
-
-renderSelectCategory("catForm"); 
+renderSearchRibbon("searchRibbon", CATEGORIES);
 
 renderShowCase(allEvents, "cardsShow"); // Show all events
 console.log(allEvents.length);

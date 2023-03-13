@@ -1,7 +1,7 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-import { renderSelectCategory } from './main';
+import { CATEGORIES } from './main';
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 
@@ -9,9 +9,7 @@ let  { events } = data;
 
 renderNavigation("nav");
 
-renderSearchRibbon("searchRibbon");
-
-renderSelectCategory("catForm");
+renderSearchRibbon("searchRibbon", CATEGORIES);
 
 let eventIdDetails = sessionStorage.getItem("id");
 let previousPage = sessionStorage.getItem("previousPage");
