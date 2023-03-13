@@ -1,5 +1,5 @@
 
-import {renderShowCase,selectEvents, cardShow, getDetailsButtonsListen, renderSelectCategory} from './main'
+import {renderShowCase, selectEvents, getDetailsButtonsListen, renderSelectCategory} from './main'
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 
@@ -12,7 +12,7 @@ renderSearchRibbon("searchRibbon");
 renderSelectCategory("catForm");
 
 let upcommingEvents = selectEvents(events, {upcomming:true}); 
-renderShowCase(upcommingEvents, cardShow); // Muestra Upcomming events
+renderShowCase(upcommingEvents, "cardsShow"); // Muestra Upcomming events
 console.log(upcommingEvents.length);
 
 getDetailsButtonsListen('div .card a');

@@ -5,17 +5,6 @@ import * as bootstrap from 'bootstrap'
 // console.log(data_local);
 let { currentDate, events } = data;
 
-
-// Get categories functionality
-const getCategories = (events) => {
-  let categories = [];
-  for (let event of events) {
-    if (!categories.includes(event.category)) {
-      categories.push(event.category);
-    }
-  }
-  return categories;
-}
 export const CATEGORIES = getCategories(events);
 // console.log(CATEGORIES);
 
@@ -33,6 +22,17 @@ const getUpcommingPastEvents = (events, currentDate) => {
     }
   }
   return eventsDivided;
+}
+
+// Get categories functionality
+function getCategories(events) {
+  let categories = [];
+  for (let event of events) {
+    if (!categories.includes(event.category)) {
+      categories.push(event.category);
+    }
+  }
+  return categories;
 }
 
 // let {upcommingEvents, pastEvents} = getUpcommingPastEvents(events, currentDate);
@@ -87,14 +87,13 @@ export const getDetailsButtonsListen = (selector) => {
 
 
 // Rendering events Showcase con resultado de búsquedas:
-// create card Showcase
-export const cardShow = document.getElementById("cardsShow");
 
-export function renderShowCase(searchEvents, showDisplay) {
+export function renderShowCase(filteredEvents, selector) {
+  const cardShow = document.getElementById(selector);
   console.log(currentDate);
-  for (let event of searchEvents) {
+  for (let event of filteredEvents) {
     const card = createCard(event);
-    showDisplay.appendChild(card);
+    cardShow.appendChild(card);
     console.log(event.date, event.category);
   }
 }
@@ -160,42 +159,6 @@ function createCard(event) {
   s_card.appendChild(card);
   return s_card;
 }
-
-// Render Details function
-export const renderDetails = (event, previousPage="./index.home") => {
-  let render='';
-  if (!event){
-    render = `<h2 class="text-center">Not able to retrieve info at the moment, please try later.</h2>` 
-  } else {
-    render = `<h2 class="text-center">Details Page</h2>
-                    <div class="d-flex justify-content-around flex-wrap">
-                        <!--Card Details -->
-                        <div class="d-card">
-                            <div class="card m-2 text-bg-dark text-center rgb">
-                                <img src="${event.image}" alt="${event.name} picture"/>
-                            </div>
-                        </div>
-                        <div class="d-card">
-                            <div class="card m-2 text-bg-dark text-center">
-                                <div class="card-body">
-                                    <h5 class="card-title">${event.name}</h5>
-                                    <p class="card-text">${event.description}</p>
-                                    <p class="card-text">
-                                        Place: ${event.place}
-                                    </p>
-                                    <p class="card-text">
-                                        Capacity: ${event.capacity}
-                                    </p>
-                                    <p class="card-text">Price: $${event.price}</p>
-                                    <a href="${previousPage}" type="button" class="shadow">Keep looking...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Card Details -->
-                    </div>`
-  }
-  return render;
-} 
 
 // Select category display rendering
 export const renderSelectCategory = (selector, categories=CATEGORIES) => {

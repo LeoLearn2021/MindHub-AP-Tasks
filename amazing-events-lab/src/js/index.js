@@ -1,5 +1,5 @@
 
-import {renderShowCase, selectEvents, cardShow, getDetailsButtonsListen, renderSelectCategory, CATEGORIES} from './main'
+import {renderShowCase, selectEvents, getDetailsButtonsListen, renderSelectCategory, CATEGORIES} from './main'
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 
@@ -12,7 +12,7 @@ renderSearchRibbon("searchRibbon");
 
 renderSelectCategory("catForm"); 
 
-renderShowCase(allEvents, cardShow); // Show all events
+renderShowCase(allEvents, "cardsShow"); // Show all events
 console.log(allEvents.length);
 
 getDetailsButtonsListen('div .card a');
