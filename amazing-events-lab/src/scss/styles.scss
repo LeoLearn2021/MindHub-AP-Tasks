@@ -7,6 +7,11 @@ $bs-font-sans-serif: 'Poppins', sans-serif !important;
 // Import all of Bootstrap's CSS
 @import "~bootstrap/scss/bootstrap";
 
+body {
+    position:relative;
+    min-height: 100vh;
+}
+
 .navbar-brand img {
     width: 15rem;
 }
@@ -109,9 +114,14 @@ $bs-font-sans-serif: 'Poppins', sans-serif !important;
     margin-top: auto;
     margin-bottom: auto;
 }
+main {
+    padding-bottom: 60px;    /* Footer height */
+}
 // Footer content
 footer {
-    margin-top: 50px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     align-items: center;
     height: 60px;
     border-top: $primary 3px solid;
