@@ -12,3 +12,12 @@ renderSearchRibbon("searchRibbon", CATEGORIES);
 listenToSearchParams("searchRibbon", "change", "keyup");
 
 
+// console.log( JSON.parse(sessionStorage.searchParams) );
+console.log( JSON.parse(sessionStorage.searchParams) );
+
+window.addEventListener("storage", e => {
+    if(e.storageArea===sessionStorage){
+        alert('change');
+      }
+    console.log( JSON.parse(sessionStorage.searchParams) );
+});
