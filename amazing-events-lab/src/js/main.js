@@ -42,7 +42,7 @@ function getCategories(events) {
 // Función retorna eventos ordenados por fecha.
 // Eventualmente puede aceptar distintas currentDate para seleccionar diferente corte.
 // Destructured parameter with default value assignment -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
-export const selectEvents = (events, {upcomming=false, past=false, catEvents=[]}={}, currentD=currentDate) => {
+export const selectEvents = (events, {upcomming=false, past=false, catEvents=[], textSearch=""}={}, currentD=currentDate) => {
   //Función de discriminación de eventos por categoría.
   let result = [];
   console.log(catEvents.length);
@@ -63,6 +63,10 @@ export const selectEvents = (events, {upcomming=false, past=false, catEvents=[]}
   }
   if (past) {
     result = getUpcommingPastEvents(result, currentD).pastEvents;
+  }
+  if (textSearch.trimStart() != ""){
+    let findEvent = textSearch.trimStart().toLowerCase();
+    result = result.filter(event => event.name.toLowerCase().includes(findEvent));
   }
   
   return orderEvents(result);

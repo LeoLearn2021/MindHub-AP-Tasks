@@ -65,18 +65,24 @@ export const listenToSearchParams = (events, selector, eventTypeCategories, even
     // console.log(searchParamsBox);
 
     // console.log(searchParamsBox.querySelector("#catForm"));
-    const searchParams = {
-        categorySelection: [],
-        findEventText: "",
-    };
+    // const searchParams = {
+    //     categorySelection: [],
+    //     findEventText: "",
+    // };
+    const searchParams = getSearchParams();
     searchParamsBox.querySelector("#catForm").addEventListener(eventTypeCategories, e => {
 
+        searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
         searchParams.categorySelection = Array.from(searchParamsBox.querySelectorAll("input[type=checkbox]"))
             .filter(cat => cat.checked)
             .map(cat => cat.value.replace("-"," "));
         console.log(JSON.stringify(searchParams));
         sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
-        renderShowCase(selectEvents(events, {catEvents: searchParams.categorySelection}), "cardsShow");
+        renderShowCase(
+            selectEvents(events, {
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            }), "cardsShow");
 
     });
     searchParamsBox.querySelector("form").addEventListener(eventTypeTextSearch, e => {
@@ -84,6 +90,11 @@ export const listenToSearchParams = (events, selector, eventTypeCategories, even
         searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
         console.log(searchParams);
         sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
+        renderShowCase(
+            selectEvents(events, {
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            }), "cardsShow");
     });
 };
 
