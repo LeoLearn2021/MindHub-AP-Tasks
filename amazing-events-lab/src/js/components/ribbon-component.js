@@ -1,9 +1,11 @@
+import { selectEvents } from "../main";
+import { renderShowCase } from "./render-showcase-component";
 
 export const renderSearchRibbon = (selector, categories) => {
-    
+
     let findEventText = getSearchParams().findEventText;
     const sRibbon = document.getElementById(selector);
-    ribbonContent =`
+    ribbonContent = `
         <div class="myRow" id="breackable">
             
             <!--Cat checks-->
@@ -27,67 +29,69 @@ export const renderSearchRibbon = (selector, categories) => {
             </div>
             <!-- Search Box -->
         </div>`;
-    sRibbon.innerHTML = ribbonContent;  
-    
+    sRibbon.innerHTML = ribbonContent;
+
     renderSelectCategory("catForm", categories);
-} 
+}
 
 // Select category display rendering
 const renderSelectCategory = (selector, categories) => {
-
+    // console.log(categories);
     let categorySelection = getSearchParams().categorySelection;
-
+    console.log(categorySelection);
     const displayContainer = document.getElementById(selector);
     // console.log(displayContainer);
     let catForm = `<div class="row">`;
     categories.forEach(category => {
-      catForm +=`    
+        catForm += `    
           <div class="col form-check mx-2 p-2">
               <input class="form-check-input  border border-primary cat-check" type="checkbox" 
-                    value=${category}
-                    id=${category}
-                    ${categorySelection.includes(category)? "checked":""} />
-              <label class="form-check-label" for=${category}>
+                    value=${category.replace(" ", "-")}
+                    id=${category.replace(" ", "-")}
+                    ${categorySelection.includes(category) ? "checked" : ""} />
+              <label class="form-check-label" for=${category.replace(" ", "-")}>
                   ${category}
               </label>
-          </div>` 
+          </div>`
     });
     catForm += "</div>";
     displayContainer.innerHTML = catForm;
-  }
+}
 
 // Listener to search Params functionality
-export const listenToSearchParams = (selector, eventTypeCategories, eventTypeTextSearch) => {
-  const searchParamsBox = document.getElementById(selector);
-  searchParamsBox.querySelector("form button").disabled = true; // Doesn't use submit to request text search.
-  // console.log(searchParamsBox);
-  
-  // console.log(searchParamsBox.querySelector("#catForm"));
-  const searchParams = {
-    categorySelection: [],
-    findEventText: "",
-  };
-  searchParamsBox.querySelector("#catForm").addEventListener(eventTypeCategories, e => {
-    
-    searchParams.categorySelection = [];
-    searchParamsBox.querySelectorAll("input[type=checkbox]")
-      .forEach(cat => cat.checked ? searchParams.categorySelection.push(cat.value):null);
-      console.log(JSON.stringify(searchParams));
-      sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
-  });
-  searchParamsBox.querySelector("form").addEventListener(eventTypeTextSearch, e =>  {
-    // console.log(searchParamsBox.querySelector("form button"));
-    searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
-    console.log(searchParams);
-    sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
-  });  
+export const listenToSearchParams = (events, selector, eventTypeCategories, eventTypeTextSearch) => {
+    const searchParamsBox = document.getElementById(selector);
+    searchParamsBox.querySelector("form button").disabled = true; // Doesn't use submit to request text search.
+    // console.log(searchParamsBox);
+
+    // console.log(searchParamsBox.querySelector("#catForm"));
+    const searchParams = {
+        categorySelection: [],
+        findEventText: "",
+    };
+    searchParamsBox.querySelector("#catForm").addEventListener(eventTypeCategories, e => {
+
+        searchParams.categorySelection = Array.from(searchParamsBox.querySelectorAll("input[type=checkbox]"))
+            .filter(cat => cat.checked)
+            .map(cat => cat.value.replace("-"," "));
+        console.log(JSON.stringify(searchParams));
+        sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
+        renderShowCase(selectEvents(events, {catEvents: searchParams.categorySelection}), "cardsShow");
+
+    });
+    searchParamsBox.querySelector("form").addEventListener(eventTypeTextSearch, e => {
+        // console.log(searchParamsBox.querySelector("form button"));
+        searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
+        console.log(searchParams);
+        sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
+    });
 };
 
-function getSearchParams (){
+export function getSearchParams() {
     let searchParams = {
         categorySelection: [],
         findEventText: "",
     }
-    return (sessionStorage.searchParams != undefined) ? 
+    return (sessionStorage.searchParams != undefined) ?
         JSON.parse(sessionStorage.searchParams) : searchParams;
 }
