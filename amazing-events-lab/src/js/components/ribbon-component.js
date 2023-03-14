@@ -13,7 +13,8 @@ export const renderSearchRibbon = (selector, categories) => {
             <!-- Search Box -->
             <div class="col-lg-4 col-10 ps-4">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" aria-label="Search" />
+                    <input class="form-control me-2" type="search" aria-label="Search" placeholder="...Find me event"
+                        value=""/>
                     <button class="btn btn-outline-primary" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor"
                             class="bi bi-search" viewBox="0 0 16 16">
@@ -38,8 +39,9 @@ const renderSelectCategory = (selector, categories) => {
     categories.forEach(category => {
       catForm +=`    
           <div class="col form-check mx-2 p-2">
-              <input class="form-check-input  border border-primary cat-check" type="checkbox" value=""
-                  id=${category} />
+              <input class="form-check-input  border border-primary cat-check" type="checkbox" 
+                    value=${category}
+                    id=${category} />
               <label class="form-check-label" for=${category}>
                   ${category}
               </label>
@@ -49,4 +51,29 @@ const renderSelectCategory = (selector, categories) => {
     displayContainer.innerHTML = catForm;
   }
 
-
+// Listener to search Params functionality
+export const listenToSearchParams = (selector, eventTypeCategories, eventTypeTextSearch) => {
+    const searchParamsBox = document.getElementById(selector);
+    searchParamsBox.querySelector("form button").disabled = true; // Doesn't use submit to request text search.
+    // console.log(searchParamsBox);
+    
+    // console.log(searchParamsBox.querySelector("#catForm"));
+    const searchParams = {
+      categorySelection: [],
+      findEventText: "",
+    };
+    searchParamsBox.querySelector("#catForm").addEventListener(eventTypeCategories, e => {
+      
+      searchParams.categorySelection = [];
+      searchParamsBox.querySelectorAll("input[type=checkbox]")
+        .forEach(cat => cat.checked ? searchParams.categorySelection.push(cat.value):null);
+        console.log(searchParams);
+        sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
+    });
+    searchParamsBox.querySelector("form").addEventListener(eventTypeTextSearch, e =>  {
+      // console.log(searchParamsBox.querySelector("form button"));
+      searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
+      console.log(searchParams);
+      sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
+    });  
+  };
