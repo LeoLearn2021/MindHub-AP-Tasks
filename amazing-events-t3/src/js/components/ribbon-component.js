@@ -76,18 +76,18 @@ const updateSelection = () => {
         
         searchToSession.setSearchParams(searchParams);
         updateShow(searchParams, events);
-        console.log(searchParams);        
+        // console.log(searchParams);        
     };
     searchParamsBox.oninput = () => {
         searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
 
         searchToSession.setSearchParams(searchParams);
         updateShow(searchParams, events);
-        console.log(searchParams);
+        // console.log(searchParams);
     }; 
     
     updateShow(searchParams, events);
-    console.log(searchParams);
+    // console.log(searchParams);
 };
 
      
