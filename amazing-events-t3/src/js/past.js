@@ -17,7 +17,7 @@ let pastEvents = selectEvents(
   });
 
 renderNavigation("nav");
-console.log(searchParams);
+// console.log(searchParams);
 sessionStorage.getItem("searchParams") == null ?
 renderShowCase(pastEvents) :
 updateShow(searchParams, pastEvents);
