@@ -32,14 +32,14 @@ export const updateShow = (searchParams, events) => {
             });
             break;
         case "/upcoming.html":
-            filteredEvents = selectEvents({
-                upcoming:true,
+            filteredEvents = selectEvents(events,{
+                upcoming: true,
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
             });
             break;
         case "/past.html":
-            filteredEvents = selectEvents({
+            filteredEvents = selectEvents(events,{
                 past:true,
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
@@ -59,7 +59,7 @@ export const updateShow = (searchParams, events) => {
             });
             break;
         default:
-            filteredEvents = selectEvents({
+            filteredEvents = selectEvents(events,{
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
             });
