@@ -1,0 +1,146 @@
+$body-bg:rgb(28, 28, 28);
+$body-color: white;
+$primary: rgba(217,3,104,255);
+
+$bs-font-sans-serif: 'Poppins', sans-serif !important;
+
+// Import all of Bootstrap's CSS
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    position:relative;
+    min-height: 100vh;
+}
+
+.navbar-brand img {
+    width: 15rem;
+}
+.carousel {
+    border-top: #ff9a00 3px solid;
+}
+@media (min-width: 992px){
+
+    .carousel {   
+        background-image: radial-gradient(rgba(0, 0, 0, 0.1), rgba(27, 27, 27, 1)), url("../../assets/img-sources/event.jpg");
+        height: 370px;
+        
+        /* Position and center the image to scale nicely on all screens */
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .carousel-inner {
+        height: 100%;
+    }
+    .carousel-item {
+        height: 100%;
+    }
+    .carousel-item a {
+        margin-top: 110px;
+    }
+    .carousel h2 {
+        color: #ff9a00;
+        font-weight: bold;
+    }
+    .myRow {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        margin-top: calc(-1 * var(--bs-gutter-y));
+        margin-right: calc(-.5 * var(--bs-gutter-x));
+        margin-left: calc(-.5 * var(--bs-gutter-x));
+        flex-wrap: wrap;
+        display: flex;
+    }
+      
+}
+
+.carouselNow {
+    text-align: center;  
+    text-decoration: none;  
+}
+.cat-check {
+    display: inline-flex;
+}
+.card img, .card-body {
+    object-fit: cover;
+    aspect-ratio: 1/.7;
+}
+.card {
+    width: 18rem;       
+}
+.d-card .card {
+    width: 30rem;
+}
+.s-card {
+    transition: .5s;    
+}
+.s-card:hover {
+    transform: scale(1.1);
+}
+.card-image {
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%);
+}
+.rgb::after {
+    content: "";
+    background: linear-gradient(45deg,
+    #ff0000 0%,
+    #ff9a00 10%,
+    #d0de21 20%,
+    #4fdc4a 30%,
+    #3fdad8 40%,
+    #2fc9e2 50%,
+    #1c7fee 60%,
+    #5f15f2 70%,
+    #ba0cf8 80%,
+    #fb07d9 90%,
+    #ff0000 100% )
+    repeat 0% 0% / 300% 100%;
+    position: absolute;
+    inset: -3px;
+    border-radius: 16px;
+    filter: blur(8px);
+    z-index: -1;
+    animation: rgb 6s linear infinite;
+}
+@keyframes rgb {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.card-footer p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+main {
+    padding-bottom: 60px;    /* Footer height */
+}
+// Footer content
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    height: 60px;
+    border-top: $primary 3px solid;
+    background-color: #ff9a00; 
+}
+.social img {
+    width: 30px;
+    //color: $primary;
+}
+.cohort p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.cohort span {
+    font-weight: bold;
+}
+.statsTable {
+    margin-bottom: 40px;
+}
+.staTable th {
+    background-color: #ff9a00;
+}
