@@ -24,6 +24,13 @@ export const updateShow = (searchParams, events) => {
     let currentPage = window.location.pathname;
     console.log(currentPage);    
     switch (currentPage){
+        case "/index.html":
+            // console.log(searchParams);
+            filteredEvents = selectEvents(events,{
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            });
+            break;
         case "/upcoming.html":
             filteredEvents = selectEvents({
                 upcoming:true,
