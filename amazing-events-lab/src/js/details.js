@@ -13,7 +13,9 @@ renderSearchRibbon("searchRibbon", CATEGORIES);
 
 let eventIdDetails = sessionStorage.getItem("id");
 let previousPage = sessionStorage.getItem("previousPage");
-console.log(eventIdDetails, previousPage);
+// console.log(eventIdDetails, previousPage);
+sessionStorage.removeItem("id");
+sessionStorage.removeItem("previousPage");
 
 let displayDetails = document.getElementById('displayDetails');
 
