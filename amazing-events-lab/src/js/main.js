@@ -99,7 +99,7 @@ export const searchToSession = {
           this.searchParams.categorySelection = JSON.parse(sessionStorage.searchParams).categorySelection;
           let txt = JSON.parse(sessionStorage.searchParams).findEventText;
           this.searchParams.findEventText = txt;
-          if ( typeof txt != String){              
+          if ( typeof txt != "string"){              
               this.resetSearchParams();
           };
       };
