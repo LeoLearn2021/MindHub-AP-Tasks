@@ -1,22 +1,20 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-// console.log(data);
-// console.log(data_local);
+
 let { currentDate, events } = data;
 
 export const CATEGORIES = getCategories(events);
-// console.log(CATEGORIES);
 
 // Function that returns events divided in upcomming and past events according to current date.
-const getUpcommingPastEvents = (events, currentDate) => {
+const getUpcomingPastEvents = (events, currentDate) => {
   let eventsDivided = {
-    upcommingEvents : [],
-    pastEvents : [],
+    upcomingEvents: [],
+    pastEvents: [],
   }
   for (let event of events) {
     if (Date.parse(event.date) > Date.parse(currentDate)) {
-      eventsDivided.upcommingEvents.push(event);
+      eventsDivided.upcomingEvents.push(event);
     } else {
       eventsDivided.pastEvents.push(event);
     }
@@ -42,7 +40,7 @@ function getCategories(events) {
 // Función retorna eventos ordenados por fecha.
 // Eventualmente puede aceptar distintas currentDate para seleccionar diferente corte.
 // Destructured parameter with default value assignment -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
-export const selectEvents = (events, {upcomming=false, past=false, catEvents=[], textSearch=""}={}, currentD=currentDate) => {
+export const selectEvents = (events = events, { upcoming = false, past = false, catEvents = [], textSearch = "" } = {}, currentD = currentDate) => {
   //Función de discriminación de eventos por categoría.
   let result = [];
   console.log(catEvents.length);
@@ -55,112 +53,61 @@ export const selectEvents = (events, {upcomming=false, past=false, catEvents=[],
         if (CATEGORIES.includes(cat) && event.category === cat) {
           result.push(event);
         }
-      }    
+      }
     }
   }
-  if (upcomming) {
-    result = getUpcommingPastEvents(result, currentD).upcommingEvents;
+  if (upcoming) {
+    result = getUpcomingPastEvents(result, currentD).upcomingEvents;
   }
   if (past) {
-    result = getUpcommingPastEvents(result, currentD).pastEvents;
+    result = getUpcomingPastEvents(result, currentD).pastEvents;
   }
-  if (textSearch.trimStart() != ""){
+  if (![null, undefined, ""].includes(textSearch) && textSearch.trimStart() != "") {
     let findEvent = textSearch.trimStart().toLowerCase();
     result = result.filter(event => event.name.toLowerCase().includes(findEvent));
   }
-  
+
   return orderEvents(result);
 }
 
 // Ordenar eventos por fecha
-const orderEvents = (events) => events.sort((a, b) => Date.parse(a.date)-Date.parse(b.date));
+const orderEvents = (events) => events.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 
 // Función agrega datos para trasnsferir a pagina detalles mediante contexto
 export const getDetailsButtonsListen = (selector) => {
   const detailsButtons = Array.from(document.querySelectorAll(selector));
   detailsButtons.forEach(button => {
-    button.addEventListener("click", e => { 
-        // e.preventDefault();         
-        sessionStorage.setItem("id", e.target.id);
-        sessionStorage.setItem("previousPage", window.location.href);        
+    button.addEventListener("click", e => {
+      // e.preventDefault();         
+      sessionStorage.setItem("id", e.target.id);
+      sessionStorage.setItem("previousPage", window.location.href);
     });
   });
   return detailsButtons.length > 0;
 }
 
 
-
-// Rendering events Showcase con resultado de búsquedas:
-
-export function renderShowCase(filteredEvents, selector) {
-  const cardShow = document.getElementById(selector);
-  console.log(currentDate);
-  for (let event of filteredEvents) {
-    const card = createCard(event);
-    cardShow.appendChild(card);
-    console.log(event.date, event.category);
-  }
-}
-
-
-// Ejemplos de uso de las funciones //
-
-// renderShowCase(selectEvents(events), cardShow); // Muestra todos los eventos
-// console.log(events.length);
-// renderShowCase(selectEvents(events, {upcomming:true}), cardShow); // Muestra Upcomming events
-// console.log(selectEvents(events, {upcomming:true}).length);
-// renderShowCase(selectEvents(events, {past:true}), cardShow); // Muestra Past events
-// console.log(selectEvents(events, {past:true}).length);
-// let selectCatEvents = selectEvents(events, {catEvents:[CATEGORIES[1], CATEGORIES[3], CATEGORIES[4]]});
-// renderShowCase(selectCatEvents, cardShow); // Muestra eventos de la categoria elegida.
-// console.log(selectCatEvents.length);
-
-///////////////////////////////
-// Render to Document functions:
-
-// Render card function
-function createCard(event) {
-  // card
-  let s_card = document.createElement('div');
-  s_card.classList.add('s-card');
-  let card = document.createElement("div");
-  card.classList.add("card", "m-4", "text-bg-dark", "text-center", "rgb"); 
-  // card image
-  let img = document.createElement("img");
-  img.src = event.image;
-  img.alt = `${event.name} picture`
-  img.classList.add("card-image");
-  // card body
-  let cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
-  const cardTitle = document.createElement("h5");
-  cardTitle.classList.add("card-title");
-  cardTitle.innerText = event.name;
-  const cardText = document.createElement("p");
-  cardText.classList.add("card-text");
-  cardText.innerText = event.description;
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(cardText);
-  // card footer
-  const cardFooter = document.createElement("div");
-  cardFooter.classList.add("card-footer", "shadow");
-  const cardFooterContent = document.createElement("div");
-  cardFooterContent.classList.add("d-flex", "justify-content-around");
-  const eventPrice = document.createElement("p");
-  eventPrice.innerText = `Price: $${event.price}`;
-  const more = document.createElement("a");
-  more.classList.add("btn", "btn-primary", "card-btn", "shadow");
-  more.innerText = "Tell me more";
-  more.href = "./details.html";
-  more.setAttribute("id", event._id);  
-  cardFooterContent.appendChild(eventPrice);
-  cardFooterContent.appendChild(more);
-  cardFooter.appendChild(cardFooterContent);
-  // Armado del card
-  card.appendChild(img);
-  card.appendChild(cardBody);
-  card.appendChild(cardFooter);
-  s_card.appendChild(card);
-  return s_card;
-}
-
+// Manage usr's query search 
+export const searchToSession = {
+  searchParams: {
+      categorySelection: [],
+      findEventText: "",
+  },
+  resetSearchParams() { sessionStorage.removeItem("searchParams");},
+  getSearchParams() {
+      if (sessionStorage.hasOwnProperty("searchParams")) {
+          this.searchParams.categorySelection = JSON.parse(sessionStorage.searchParams).categorySelection;
+          let txt = JSON.parse(sessionStorage.searchParams).findEventText;
+          this.searchParams.findEventText = txt;
+          if ( typeof txt != String){              
+              this.resetSearchParams();
+          };
+      };
+      console.log(this.searchParams);
+      return this.searchParams;
+  },
+  setSearchParams(searchParamsInput) {  
+      console.log(searchParamsInput);      
+      sessionStorage.searchParams = JSON.stringify(searchParamsInput);
+  },
+};

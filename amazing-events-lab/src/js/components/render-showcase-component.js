@@ -1,16 +1,64 @@
 
-// Rendering events Showcase con resultado de búsquedas:
+import { selectEvents, getDetailsButtonsListen, searchToSession } from '../main';
+import emptyStage from "url: ../../../assets/img-sources/emptyStage2.jpg";
 
-export function renderShowCase(filteredEvents, selector) {
-    const cardShow = document.getElementById(selector);
+// Rendering events Showcase con resultado de búsquedas:
+export function renderShowCase(filteredEvents) {
+    const cardShow = document.getElementById("cardsShow");
+    if (filteredEvents.length == 0){
+        cardShow.innerHTML = renderNoEvent;
+        return;
+    };
     cardShow.innerHTML = "";
-    // console.log(currentDate);
     for (let event of filteredEvents) {
         const card = createCard(event);
         cardShow.appendChild(card);
         console.log(event.date, event.category);
     }
+
+    getDetailsButtonsListen('div .card a');
 }
+
+// Rendering events updating selection of events
+export const updateShow = (searchParams, events) => {
+    let currentPage = window.location.pathname;
+    console.log(currentPage);    
+    switch (currentPage){
+        case "/upcoming.html":
+            filteredEvents = selectEvents({
+                upcoming:true,
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            });
+            break;
+        case "/past.html":
+            filteredEvents = selectEvents({
+                past:true,
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            });
+            break;
+        case "/details.html":
+            // TO DO !!!!!!!!!!!!! Create functionality
+            console.log(searchParams);
+            searchToSession.setSearchParams(searchParams);
+            return;
+        case "/new-comps.html":
+            console.log(searchParams);
+            filteredEvents = selectEvents(events,{
+                past:true,
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            });
+            break;
+        default:
+            filteredEvents = selectEvents({
+                catEvents: searchParams.categorySelection,
+                textSearch: searchParams.findEventText,
+            });
+    }
+    renderShowCase(filteredEvents);
+};  
 
 // Render card function
 function createCard(event) {
@@ -43,7 +91,7 @@ function createCard(event) {
     const eventPrice = document.createElement("p");
     eventPrice.innerText = `Price: $${event.price}`;
     const more = document.createElement("a");
-    more.classList.add("btn", "btn-primary", "card-btn", "shadow");
+    more.classList.add("btn", "btn-primary", "card-btn", "shadow", "details");
     more.innerText = "Tell me more";
     more.href = "./details.html";
     more.setAttribute("id", event._id);
@@ -57,3 +105,60 @@ function createCard(event) {
     s_card.appendChild(card);
     return s_card;
 }
+
+
+// Render Details function (use function declaration to allow hoisting)
+const renderNoEvent = `<h2 class="text-center">Woops!...</h2>
+                      <div class="d-flex justify-content-around flex-wrap">
+                          <!--Card Details -->
+                          <div class="d-card">
+                              <div class="card m-2 text-bg-dark text-center rgb">
+                                  <img src=${emptyStage} alt="Empty Stage picture"/>
+                              </div>
+                          </div>
+                          <div class="d-card">
+                              <div class="card m-2 text-bg-dark text-center">
+                                  <div class="card-body">
+                                      <h5 class="card-title">No event found!</h5>
+                                      <p class="card-text">Please refine you query to find something Amazing!</p>                                      
+                                  </div>
+                              </div>
+                          </div>
+                          <!--Card Details -->
+                      </div>`;
+
+// Render Details function (use function declaration to allow hoisting)
+export function renderDetails(event, previousPage="./index.home") {
+    let render='';
+    if (!event){
+      render = `<h2 class="text-center">Not able to retrieve info at the moment, please try later.</h2>` 
+    } else {
+      render = `<h2 class="text-center">Details Page</h2>
+                      <div class="d-flex justify-content-around flex-wrap">
+                          <!--Card Details -->
+                          <div class="d-card">
+                              <div class="card m-2 text-bg-dark text-center rgb">
+                                  <img src="${event.image}" alt="${event.name} picture"/>
+                              </div>
+                          </div>
+                          <div class="d-card">
+                              <div class="card m-2 text-bg-dark text-center">
+                                  <div class="card-body">
+                                      <h5 class="card-title">${event.name}</h5>
+                                      <p class="card-text">${event.description}</p>
+                                      <p class="card-text">
+                                          Place: ${event.place}
+                                      </p>
+                                      <p class="card-text">
+                                          Capacity: ${event.capacity}
+                                      </p>
+                                      <p class="card-text">Price: $${event.price}</p>
+                                      <a href="${previousPage}" type="button" class="shadow">Keep looking...</a>
+                                  </div>
+                              </div>
+                          </div>
+                          <!--Card Details -->
+                      </div>`
+    }
+    return render;
+  }                       

@@ -1,11 +1,15 @@
-import { selectEvents } from "../main";
-import { renderShowCase } from "./render-showcase-component";
+import { CATEGORIES, searchToSession } from "../main";
+import { updateShow } from "./render-showcase-component";
 
-export const renderSearchRibbon = (selector, categories) => {
+let { events } = data;
 
-    let findEventText = getSearchParams().findEventText;
-    const sRibbon = document.getElementById(selector);
-    ribbonContent = `
+export const renderSearchRibbon = () => {
+
+    let findEventText = searchToSession.getSearchParams().findEventText;
+    // console.log(findEventText);
+    const sRibbon = document.getElementById("searchRibbon");
+    // console.log(sRibbon);
+    let ribbonContent = `
         <div class="myRow" id="breackable">
             
             <!--Cat checks-->
@@ -16,9 +20,9 @@ export const renderSearchRibbon = (selector, categories) => {
             <!-- Search Box -->
             <div class="col-lg-4 col-10 ps-4">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" aria-label="Search" placeholder="...Find me event"
-                        value="${findEventText}"/>
-                    <button class="btn btn-outline-primary" type="submit">
+                    <input class="form-control me-2" type="search" aria-label="Search" oninput="${updateSelection()}" placeholder="...Find event"
+                        value="${findEventText != undefined ? findEventText : ""}"/>
+                    <button class="btn btn-outline-primary" type="button" disabled id="searchButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor"
                             class="bi bi-search" viewBox="0 0 16 16">
                             <path
@@ -31,21 +35,21 @@ export const renderSearchRibbon = (selector, categories) => {
         </div>`;
     sRibbon.innerHTML = ribbonContent;
 
-    renderSelectCategory("catForm", categories);
+    renderSelectCategory();
 }
 
 // Select category display rendering
-const renderSelectCategory = (selector, categories) => {
+const renderSelectCategory = () => {
     // console.log(categories);
-    let categorySelection = getSearchParams().categorySelection;
-    console.log(categorySelection);
-    const displayContainer = document.getElementById(selector);
+    let categorySelection = searchToSession.getSearchParams().categorySelection;
+
+    const displayContainer = document.getElementById("catForm");
     // console.log(displayContainer);
     let catForm = `<div class="row">`;
-    categories.forEach(category => {
+    CATEGORIES.forEach(category => {
         catForm += `    
           <div class="col form-check mx-2 p-2">
-              <input class="form-check-input  border border-primary cat-check" type="checkbox" 
+              <input class="form-check-input  border border-primary cat-check" onchange="${updateSelection()}" type="checkbox" 
                     value=${category.replace(" ", "-")}
                     id=${category.replace(" ", "-")}
                     ${categorySelection.includes(category) ? "checked" : ""} />
@@ -59,50 +63,32 @@ const renderSelectCategory = (selector, categories) => {
 }
 
 // Listener to search Params functionality
-export const listenToSearchParams = (events, selector, eventTypeCategories, eventTypeTextSearch) => {
-    const searchParamsBox = document.getElementById(selector);
-    searchParamsBox.querySelector("form button").disabled = true; // Doesn't use submit to request text search.
-    // console.log(searchParamsBox);
+const updateSelection = () => {
+    const searchParamsBox = document.getElementById("searchRibbon");
 
-    // console.log(searchParamsBox.querySelector("#catForm"));
-    // const searchParams = {
-    //     categorySelection: [],
-    //     findEventText: "",
-    // };
-    const searchParams = getSearchParams();
-    searchParamsBox.querySelector("#catForm").addEventListener(eventTypeCategories, e => {
+    let searchParams = searchToSession.getSearchParams();
 
-        searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
+    searchParamsBox.onchange = (e) => {
+        // console.log(e.target.value.replace("-"," "));
         searchParams.categorySelection = Array.from(searchParamsBox.querySelectorAll("input[type=checkbox]"))
-            .filter(cat => cat.checked)
-            .map(cat => cat.value.replace("-"," "));
-        console.log(JSON.stringify(searchParams));
-        sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
-        renderShowCase(
-            selectEvents(events, {
-                catEvents: searchParams.categorySelection,
-                textSearch: searchParams.findEventText,
-            }), "cardsShow");
-
-    });
-    searchParamsBox.querySelector("form").addEventListener(eventTypeTextSearch, e => {
-        // console.log(searchParamsBox.querySelector("form button"));
+        .filter(cat => cat.checked)    
+        .map(cat => cat.value.replace("-"," "));
+        
+        searchToSession.setSearchParams(searchParams);
+        updateShow(searchParams, events);
+        console.log(searchParams);        
+    };
+    searchParamsBox.oninput = () => {
         searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
+
+        searchToSession.setSearchParams(searchParams);
+        updateShow(searchParams, events);
         console.log(searchParams);
-        sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
-        renderShowCase(
-            selectEvents(events, {
-                catEvents: searchParams.categorySelection,
-                textSearch: searchParams.findEventText,
-            }), "cardsShow");
-    });
+    }; 
+    
+    updateShow(searchParams, events);
+    console.log(searchParams);
 };
 
-export function getSearchParams() {
-    let searchParams = {
-        categorySelection: [],
-        findEventText: "",
-    }
-    return (sessionStorage.searchParams != undefined) ?
-        JSON.parse(sessionStorage.searchParams) : searchParams;
-}
+     
+
