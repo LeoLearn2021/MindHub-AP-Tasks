@@ -2,6 +2,7 @@ import { CATEGORIES, searchToSession } from "../main";
 import { updateShow } from "./render-showcase-component";
 
 let { events } = data;
+let updateSelection;
 
 export const renderSearchRibbon = () => {
 
@@ -9,6 +10,9 @@ export const renderSearchRibbon = () => {
     // console.log(findEventText);
     const sRibbon = document.getElementById("searchRibbon");
     // console.log(sRibbon);
+
+    updateSelection = updateSelection();
+
     let ribbonContent = `
         <div class="myRow" id="breackable">
             
@@ -20,7 +24,7 @@ export const renderSearchRibbon = () => {
             <!-- Search Box -->
             <div class="col-lg-4 col-10 ps-4">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" aria-label="Search" oninput="${updateSelection()}" placeholder="...Find event"
+                    <input class="form-control me-2" type="search" aria-label="Search" oninput="${updateSelection}" placeholder="...Find event"
                         value="${findEventText != undefined ? findEventText : ""}"/>
                     <button class="btn btn-outline-primary" type="button" disabled id="searchButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor"
@@ -32,7 +36,8 @@ export const renderSearchRibbon = () => {
                 </form>
             </div>
             <!-- Search Box -->
-        </div>`;
+        </div>`;    
+
     sRibbon.innerHTML = ribbonContent;
 
     renderSelectCategory();
@@ -49,24 +54,25 @@ const renderSelectCategory = () => {
     CATEGORIES.forEach(category => {
         catForm += `    
           <div class="col form-check mx-2 p-2">
-              <input class="form-check-input  border border-primary cat-check" onchange="${updateSelection()}" type="checkbox" 
+              <input class="form-check-input  border border-primary cat-check" onchange="${updateSelection}" type="checkbox" 
                     value=${category.replace(" ", "-")}
                     id=${category.replace(" ", "-")}
                     ${categorySelection.includes(category) ? "checked" : ""} />
               <label class="form-check-label" for=${category.replace(" ", "-")}>
                   ${category}
               </label>
-          </div>`
+          </div>`;        
     });
     catForm += "</div>";
     displayContainer.innerHTML = catForm;
 }
 
 // Listener to search Params functionality
-const updateSelection = () => {
+updateSelection = () => {
     const searchParamsBox = document.getElementById("searchRibbon");
 
     let searchParams = searchToSession.getSearchParams();
+    let noUsrInput = true;
 
     searchParamsBox.onchange = (e) => {
         // console.log(e.target.value.replace("-"," "));
@@ -76,6 +82,7 @@ const updateSelection = () => {
         
         searchToSession.setSearchParams(searchParams);
         updateShow(searchParams, events);
+        noUsrInput = false;
         console.log(searchParams);        
     };
     searchParamsBox.oninput = () => {
@@ -83,11 +90,15 @@ const updateSelection = () => {
 
         searchToSession.setSearchParams(searchParams);
         updateShow(searchParams, events);
+        noUsrInput = false;
         console.log(searchParams);
     }; 
     
-    updateShow(searchParams, events);
-    console.log(searchParams);
+    if (noUsrInput){
+        updateShow(searchParams, events);
+        console.log(searchParams);
+    }
+    
 };
 
      
