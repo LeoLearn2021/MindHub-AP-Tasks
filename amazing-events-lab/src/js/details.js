@@ -10,7 +10,7 @@ let  { events } = data;
 
 renderNavigation("nav");
 
-renderSearchRibbon();
+renderSearchRibbon(landing=true);
 
 let eventIdDetails = sessionStorage.getItem("id");
 let previousPage = sessionStorage.getItem("previousPage");

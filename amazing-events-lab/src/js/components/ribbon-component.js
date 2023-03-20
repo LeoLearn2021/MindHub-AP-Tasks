@@ -4,14 +4,14 @@ import { updateShow } from "./render-showcase-component";
 let { events } = data;
 let updateSelection;
 
-export const renderSearchRibbon = () => {
+export const renderSearchRibbon = (landing=false) => {
 
     let findEventText = searchToSession.getSearchParams().findEventText;
     // console.log(findEventText);
     const sRibbon = document.getElementById("searchRibbon");
     // console.log(sRibbon);
 
-    updateSelection = updateSelection();
+    updateSelection = updateSelection(landing);
 
     let ribbonContent = `
         <div class="myRow" id="breackable">
@@ -68,7 +68,7 @@ const renderSelectCategory = () => {
 }
 
 // Listener to search Params functionality
-updateSelection = () => {
+updateSelection = (landing) => {
     const searchParamsBox = document.getElementById("searchRibbon");
 
     let searchParams = searchToSession.getSearchParams();
@@ -94,7 +94,7 @@ updateSelection = () => {
         console.log(searchParams);
     }; 
     
-    if (noUsrInput){
+    if (noUsrInput && !landing) {
         updateShow(searchParams, events);
         console.log(searchParams);
     }

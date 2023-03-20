@@ -22,7 +22,7 @@ sessionStorage.getItem("searchParams") == null ?
 renderShowCase(pastEvents) :
 updateShow(searchParams, pastEvents);
 
-renderSearchRibbon();
+renderSearchRibbon(landing=true);
 
 getDetailsButtonsListen('div .card a');
 

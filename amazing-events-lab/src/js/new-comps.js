@@ -21,7 +21,7 @@ sessionStorage.getItem("searchParams") == null ?
 renderShowCase(newCompEvents) :
 updateShow(searchParams, newCompEvents);
 
-renderSearchRibbon();
+renderSearchRibbon(landing=true);
 
 getDetailsButtonsListen('div .card a');
 
