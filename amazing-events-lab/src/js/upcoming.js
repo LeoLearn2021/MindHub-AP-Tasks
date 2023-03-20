@@ -4,27 +4,33 @@ import * as bootstrap from 'bootstrap'
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 import { renderShowCase, updateShow } from './components/render-showcase-component';
-import { selectEvents, getDetailsButtonsListen, searchToSession } from './main';
+import { getData, selectEvents, getDetailsButtonsListen, searchToSession } from './main';
 
-let { events } = data;
-let searchParams = searchToSession.getSearchParams()
-// searchToSession.setSearchParams(searchParams);
-let upcomingEvents = selectEvents(
-  events, {
+getData().then((data) => {
+  console.log(data);
+
+  let { events, currentDate } = data;
+
+  let searchParams = searchToSession.getSearchParams()
+  let newCompEvents = selectEvents(
+    events, {
     upcoming: true,
     catEvents: searchParams.categorySelection,
     textSearch: searchParams.findEventText,
-  });
+    },currentDate
+  );
 
-renderNavigation("nav");
-console.log(searchParams);
-sessionStorage.getItem("searchParams") == null ?
-renderShowCase(upcomingEvents) :
-updateShow(searchParams, upcomingEvents);
+  renderNavigation("nav");
+  console.log(searchParams);
+  sessionStorage.getItem("searchParams") == null ?
+    renderShowCase(newCompEvents) :
+    updateShow(searchParams, newCompEvents, currentDate);
 
-renderSearchRibbon(landing=true);
+  renderSearchRibbon(events, landing = true);
 
-getDetailsButtonsListen('div .card a');
+  getDetailsButtonsListen('div .card a');
+
+});
 
 // console.log( JSON.parse(sessionStorage.searchParams) );
 
