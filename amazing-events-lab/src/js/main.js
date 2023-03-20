@@ -2,9 +2,21 @@
 import * as bootstrap from 'bootstrap'
 
 
-let { currentDate, events } = data;
+// let { currentDate, events } = data;
 
-export const CATEGORIES = getCategories(events);
+const URLAPI = "https://mindhub-xj03.onrender.com/api/amazing";
+
+export const getData = async() => {
+  try {
+    let response = await fetch(URLAPI);
+    let data = await response.json();
+    return data;    
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+// export const CATEGORIES = getCategories(events);
 
 // Function that returns events divided in upcomming and past events according to current date.
 const getUpcomingPastEvents = (events, currentDate) => {
@@ -23,7 +35,7 @@ const getUpcomingPastEvents = (events, currentDate) => {
 }
 
 // Get categories functionality
-function getCategories(events) {
+export function getCategories(events) {
   let categories = [];
   for (let event of events) {
     if (!categories.includes(event.category)) {
@@ -40,9 +52,10 @@ function getCategories(events) {
 // Función retorna eventos ordenados por fecha.
 // Eventualmente puede aceptar distintas currentDate para seleccionar diferente corte.
 // Destructured parameter with default value assignment -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
-export const selectEvents = (events = events, { upcoming = false, past = false, catEvents = [], textSearch = "" } = {}, currentD = currentDate) => {
+export const selectEvents = (events, { upcoming = false, past = false, catEvents = [], textSearch = "" } = {}, currentD) => {
   //Función de discriminación de eventos por categoría.
   let result = [];
+  const CATEGORIES = getCategories(events);
   console.log(catEvents.length);
   if (catEvents.length === 0) {
     result = events;

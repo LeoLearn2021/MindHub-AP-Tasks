@@ -1,17 +1,18 @@
-import { CATEGORIES, searchToSession } from "../main";
+import { getCategories, searchToSession } from "../main";
 import { updateShow } from "./render-showcase-component";
 
-let { events } = data;
+// let { events } = data;
+
 let updateSelection;
 
-export const renderSearchRibbon = (landing=false) => {
+export const renderSearchRibbon = (events, landing=false) => {
 
     let findEventText = searchToSession.getSearchParams().findEventText;
     // console.log(findEventText);
     const sRibbon = document.getElementById("searchRibbon");
     // console.log(sRibbon);
 
-    updateSelection = updateSelection(landing);
+    updateSelection = updateSelection(events, landing);
 
     let ribbonContent = `
         <div class="myRow" id="breackable">
@@ -40,14 +41,14 @@ export const renderSearchRibbon = (landing=false) => {
 
     sRibbon.innerHTML = ribbonContent;
 
-    renderSelectCategory();
+    renderSelectCategory(events);
 }
 
 // Select category display rendering
-const renderSelectCategory = () => {
+const renderSelectCategory = (events) => {
     // console.log(categories);
     let categorySelection = searchToSession.getSearchParams().categorySelection;
-
+    const CATEGORIES = getCategories(events);
     const displayContainer = document.getElementById("catForm");
     // console.log(displayContainer);
     let catForm = `<div class="row">`;
@@ -68,7 +69,7 @@ const renderSelectCategory = () => {
 }
 
 // Listener to search Params functionality
-updateSelection = (landing) => {
+updateSelection = (events, landing) => {
     const searchParamsBox = document.getElementById("searchRibbon");
 
     let searchParams = searchToSession.getSearchParams();

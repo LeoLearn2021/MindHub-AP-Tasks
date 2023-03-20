@@ -20,7 +20,7 @@ export function renderShowCase(filteredEvents) {
 }
 
 // Rendering events updating selection of events
-export const updateShow = (searchParams, events) => {
+export const updateShow = (searchParams, events, currentDate) => {
     let currentPage = window.location.pathname;
     console.log(currentPage);    
     switch (currentPage){
@@ -29,21 +29,24 @@ export const updateShow = (searchParams, events) => {
             filteredEvents = selectEvents(events,{
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
-            });
+                },
+                currentDate);
             break;
         case "/upcoming.html":
             filteredEvents = selectEvents(events,{
                 upcoming: true,
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
-            });
+                },
+                currentDate);
             break;
         case "/past.html":
             filteredEvents = selectEvents(events,{
                 past:true,
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
-            });
+                },
+                currentDate);
             break;
         case "/details.html":
             // TO DO !!!!!!!!!!!!! Create functionality
@@ -53,16 +56,18 @@ export const updateShow = (searchParams, events) => {
         case "/new-comps.html":
             console.log(searchParams);
             filteredEvents = selectEvents(events,{
-                past:true,
+                // past:true,
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
-            });
+                },
+                currentDate);
             break;
         default:
             filteredEvents = selectEvents(events,{
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
-            });
+                },
+                currentDate);
     }
     renderShowCase(filteredEvents);
 };  
