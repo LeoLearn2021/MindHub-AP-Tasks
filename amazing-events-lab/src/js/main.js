@@ -19,7 +19,7 @@ export const getData = async() => {
 // export const CATEGORIES = getCategories(events);
 
 // Function that returns events divided in upcomming and past events according to current date.
-const getUpcomingPastEvents = (events, currentDate) => {
+export const getUpcomingPastEvents = (events, currentDate) => {
   let eventsDivided = {
     upcomingEvents: [],
     pastEvents: [],
