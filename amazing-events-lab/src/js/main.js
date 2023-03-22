@@ -56,7 +56,7 @@ export const selectEvents = (events, { upcoming = false, past = false, catEvents
   //Función de discriminación de eventos por categoría.
   let result = [];
   const CATEGORIES = getCategories(events);
-  console.log(catEvents.length);
+  // console.log(catEvents.length);
   if (catEvents.length === 0) {
     result = events;
   }
@@ -116,11 +116,11 @@ export const searchToSession = {
               this.resetSearchParams();
           };
       };
-      console.log(this.searchParams);
+      // console.log(this.searchParams);
       return this.searchParams;
   },
   setSearchParams(searchParamsInput) {  
-      console.log(searchParamsInput);      
+      // console.log(searchParamsInput);      
       sessionStorage.searchParams = JSON.stringify(searchParamsInput);
   },
 };

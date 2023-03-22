@@ -4,32 +4,33 @@ import * as bootstrap from 'bootstrap'
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 import { renderShowCase, updateShow } from './components/render-showcase-component';
-import { getData, selectEvents, getDetailsButtonsListen, searchToSession } from './main';
+import { getData, selectEvents, getDetailsButtonsListen, searchToSession, getCategories } from './main';
 
 getData().then((data) => {
-  console.log(data);
+  // console.log(data);
 
   let { events, currentDate } = data;
 
+  const CATEGORIES = getCategories(events);
   let searchParams = searchToSession.getSearchParams()
-  let newCompEvents = selectEvents(
+  let homeEvents = selectEvents(
     events, {
     catEvents: searchParams.categorySelection,
     textSearch: searchParams.findEventText,
     },currentDate
   );
 
-  renderNavigation("nav");
   console.log(searchParams);
   sessionStorage.getItem("searchParams") == null ?
-    renderShowCase(newCompEvents) :
-    updateShow(searchParams, newCompEvents, currentDate);
+    renderShowCase(homeEvents) :
+    updateShow(events, currentDate, searchParams);
 
-  renderSearchRibbon(events, landing = true);
+  renderSearchRibbon(events, currentDate, CATEGORIES, landing = true);
 
   getDetailsButtonsListen('div .card a');
 
 });
+renderNavigation("nav");
 
 // console.log( JSON.parse(sessionStorage.searchParams) );
 

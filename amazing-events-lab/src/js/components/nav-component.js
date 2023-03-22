@@ -67,6 +67,7 @@ export const renderNavigation = (selector) => {
 
     // let actual = window.location.href.split("1234"); // Problemas cuando se corre ver. compilada en otro servidor.
     let actual = window.location.pathname;
+    // console.log(actual);
     actual = (actual[actual.length -1] === "/") ? "/index.html" : actual;   
     navLinks.forEach(link => { link.state = actual.includes(link.url.slice(1)) });
 
@@ -107,6 +108,7 @@ export const renderNavigation = (selector) => {
 
     let carouselInner = `<div class="carousel-inner">`;
     let carouselActual = navLinks.find(link => link.state);
+    // console.log(carouselActual);
 
     if (!carouselActual.carouselStatic) {
         carousel.setAttribute("data-bs-ride", carouselMode.on);

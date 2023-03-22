@@ -20,12 +20,13 @@ export function renderShowCase(filteredEvents) {
 }
 
 // Rendering events updating selection of events
-export const updateShow = (searchParams, events, currentDate) => {
+export const updateShow = (events, currentDate, searchParams) => {
     let currentPage = window.location.pathname;
-    console.log(currentPage);    
+    // console.log(currentPage);    
     switch (currentPage){
         case "/index.html":
             // console.log(searchParams);
+            // console.log(events);
             filteredEvents = selectEvents(events,{
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
@@ -56,7 +57,7 @@ export const updateShow = (searchParams, events, currentDate) => {
         case "/new-comps.html":
             console.log(searchParams);
             filteredEvents = selectEvents(events,{
-                // past:true,
+                past:true,
                 catEvents: searchParams.categorySelection,
                 textSearch: searchParams.findEventText,
                 },

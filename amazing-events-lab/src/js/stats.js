@@ -13,10 +13,6 @@ getData().then((data) => {
 
     const CATEGORIES = getCategories(events);
 
-    // console.log(CATEGORIES);
-    // console.log(upcomingEvents);
-    // console.log(pastEvents);
-    // console.log(attendancePorc(events));
     const statsContent = document.getElementById("statsTable");
     let content = `<h2 class="text-center">Statistical Data</h2>`
     content += evStatsTable("EVENTS STATISTICS", attendancePorc(events));

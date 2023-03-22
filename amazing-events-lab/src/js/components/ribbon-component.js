@@ -1,18 +1,18 @@
-import { getCategories, searchToSession } from "../main";
+import { searchToSession } from "../main";
 import { updateShow } from "./render-showcase-component";
 
 // let { events } = data;
 
 let updateSelection;
 
-export const renderSearchRibbon = (events, landing=false) => {
+export const renderSearchRibbon = (events, currentDate, CATEGORIES, landing=false) => {
 
     let findEventText = searchToSession.getSearchParams().findEventText;
     // console.log(findEventText);
     const sRibbon = document.getElementById("searchRibbon");
     // console.log(sRibbon);
 
-    updateSelection = updateSelection(events, landing);
+    updateSelection = updateSelection(events, currentDate, landing);
 
     let ribbonContent = `
         <div class="myRow" id="breackable">
@@ -41,14 +41,14 @@ export const renderSearchRibbon = (events, landing=false) => {
 
     sRibbon.innerHTML = ribbonContent;
 
-    renderSelectCategory(events);
+    renderSelectCategory(CATEGORIES);
 }
 
 // Select category display rendering
-const renderSelectCategory = (events) => {
+const renderSelectCategory = (CATEGORIES) => {
     // console.log(categories);
     let categorySelection = searchToSession.getSearchParams().categorySelection;
-    const CATEGORIES = getCategories(events);
+    
     const displayContainer = document.getElementById("catForm");
     // console.log(displayContainer);
     let catForm = `<div class="row">`;
@@ -69,7 +69,7 @@ const renderSelectCategory = (events) => {
 }
 
 // Listener to search Params functionality
-updateSelection = (events, landing) => {
+updateSelection = (events, currentDate, landing) => {
     const searchParamsBox = document.getElementById("searchRibbon");
 
     let searchParams = searchToSession.getSearchParams();
@@ -82,7 +82,7 @@ updateSelection = (events, landing) => {
         .map(cat => cat.value.replace("-"," "));
         
         searchToSession.setSearchParams(searchParams);
-        updateShow(searchParams, events);
+        updateShow(events, currentDate, searchParams);
         noUsrInput = false;
         console.log(searchParams);        
     };
@@ -90,13 +90,13 @@ updateSelection = (events, landing) => {
         searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
 
         searchToSession.setSearchParams(searchParams);
-        updateShow(searchParams, events);
+        updateShow(events, currentDate, searchParams);
         noUsrInput = false;
         console.log(searchParams);
     }; 
     
     if (noUsrInput && !landing) {
-        updateShow(searchParams, events);
+        updateShow(events, currentDate, searchParams);
         console.log(searchParams);
     }
     

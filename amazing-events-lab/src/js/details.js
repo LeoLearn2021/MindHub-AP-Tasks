@@ -1,7 +1,7 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-import { getData } from './main';
+import { getData, getCategories } from './main';
 import { renderNavigation } from './components/nav-component';
 import { renderSearchRibbon } from './components/ribbon-component';
 import { renderDetails } from './components/render-showcase-component';
@@ -9,11 +9,13 @@ import { renderDetails } from './components/render-showcase-component';
 getData().then((data) => {
     console.log(data);
 
-    let { events } = data;
+    let { events, currentDate } = data;
+
+    const CATEGORIES = getCategories(events);
 
     renderNavigation("nav");
 
-    renderSearchRibbon(events, landing = true);
+    renderSearchRibbon(events, currentDate, CATEGORIES, landing = true);
 
     let eventIdDetails = sessionStorage.getItem("id");
     let previousPage = sessionStorage.getItem("previousPage");
