@@ -7,7 +7,7 @@ import { renderSearchRibbon } from './components/ribbon-component';
 import { renderDetails } from './components/render-showcase-component';
 
 getData().then((data) => {
-    console.log(data);
+  //  console.log(data);
 
     let { events, currentDate } = data;
 

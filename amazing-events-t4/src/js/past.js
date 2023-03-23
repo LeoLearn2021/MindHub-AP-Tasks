@@ -7,7 +7,7 @@ import { renderShowCase, updateShow } from './components/render-showcase-compone
 import { getData, selectEvents, getDetailsButtonsListen, searchToSession, getCategories } from './main';
 
 getData().then((data) => {
-  console.log(data);
+//  console.log(data);
 
   let { events, currentDate } = data;
 

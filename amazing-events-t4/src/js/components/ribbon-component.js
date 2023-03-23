@@ -84,7 +84,7 @@ updateSelection = (events, currentDate, landing) => {
         searchToSession.setSearchParams(searchParams);
         updateShow(events, currentDate, searchParams);
         noUsrInput = false;
-        console.log(searchParams);        
+     // console.log(searchParams);        
     };
     searchParamsBox.oninput = () => {
         searchParams.findEventText = searchParamsBox.querySelector("input[type=search]").value;
@@ -92,12 +92,12 @@ updateSelection = (events, currentDate, landing) => {
         searchToSession.setSearchParams(searchParams);
         updateShow(events, currentDate, searchParams);
         noUsrInput = false;
-        console.log(searchParams);
+     // console.log(searchParams);
     }; 
     
     if (noUsrInput && !landing) {
         updateShow(events, currentDate, searchParams);
-        console.log(searchParams);
+     // console.log(searchParams);
     }
     
 };

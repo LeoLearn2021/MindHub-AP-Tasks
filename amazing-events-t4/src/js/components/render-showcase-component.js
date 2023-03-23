@@ -13,7 +13,7 @@ export function renderShowCase(filteredEvents) {
     for (let event of filteredEvents) {
         const card = createCard(event);
         cardShow.appendChild(card);
-        console.log(event.date, event.category);
+     //console.log(event.date, event.category);
     }
 
     getDetailsButtonsListen('div .card a');
@@ -51,11 +51,11 @@ export const updateShow = (events, currentDate, searchParams) => {
             break;
         case "/details.html":
             // TO DO !!!!!!!!!!!!! Create functionality
-            console.log(searchParams);
+         // console.log(searchParams);
             searchToSession.setSearchParams(searchParams);
             return;
         case "/new-comps.html":
-            console.log(searchParams);
+         // console.log(searchParams);
             filteredEvents = selectEvents(events,{
                 past:true,
                 catEvents: searchParams.categorySelection,
