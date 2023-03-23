@@ -20,7 +20,7 @@ getData().then((data) => {
     },currentDate
   );
 
-  console.log(searchParams);
+  // console.log(searchParams);
   sessionStorage.getItem("searchParams") == null ?
     renderShowCase(homeEvents) :
     updateShow(events, currentDate, searchParams);

@@ -21,7 +21,7 @@ getData().then((data) => {
     },currentDate
   );
 
-  console.log(searchParams);
+  // console.log(searchParams);
   sessionStorage.getItem("searchParams") == null ?
     renderShowCase(upcoming) :
     updateShow(events, currentDate, searchParams);
