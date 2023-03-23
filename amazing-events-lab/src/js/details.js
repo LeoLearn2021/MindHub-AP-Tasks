@@ -18,7 +18,7 @@ getData().then((data) => {
     renderSearchRibbon(events, currentDate, CATEGORIES, landing = true);
 
     let eventIdDetails = sessionStorage.getItem("id");
-    let previousPage = sessionStorage.getItem("previousPage");
+    let previousPage = sessionStorage.getItem("previousPage") != null ? sessionStorage.getItem("previousPage") : "./index.html";
     // console.log(eventIdDetails, previousPage);
     sessionStorage.removeItem("id");
     sessionStorage.removeItem("previousPage");
@@ -32,6 +32,7 @@ getData().then((data) => {
     searchButton.disabled = false;
     searchButton.addEventListener("click", e => {
         // e.preventDefault();
+        console.log(previousPage);
         window.location.href = previousPage;
         // console.log(e);
     });
