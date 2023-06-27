@@ -1,5 +1,7 @@
 
 import { selectEvents, getDetailsButtonsListen, searchToSession } from '../main';
+import { paginator } from './paginator';
+
 import emptyStage from "url: ../../../assets/img-sources/emptyStage2.jpg";
 
 // Rendering events Showcase con resultado de búsquedas:
@@ -10,11 +12,8 @@ export function renderShowCase(filteredEvents) {
         return;
     };
     cardShow.innerHTML = "";
-    for (let event of filteredEvents) {
-        const card = createCard(event);
-        cardShow.appendChild(card);
-        console.log(event.date, event.category);
-    }
+    
+    paginator(filteredEvents, cardShow);
 
     getDetailsButtonsListen('div .card a');
 }
@@ -74,7 +73,7 @@ export const updateShow = (events, currentDate, searchParams) => {
 };  
 
 // Render card function
-function createCard(event) {
+export function createCard(event) {
     // card
     let s_card = document.createElement('div');
     s_card.classList.add('s-card');
@@ -174,4 +173,6 @@ export function renderDetails(event, previousPage="./index.home") {
                       </div>`
     }
     return render;
-  }                       
+  }
+  
+
